@@ -1,8 +1,12 @@
 import React from "react"
-import "./App.css"
-
+import { Navbar } from "./components/Navbar/index"
+import { ReactComponent as Logo } from "./assets/profile.svg"
 function App() {
-  return <div className="App"></div>
+  return (
+    <div className="App">
+      <Navbar Logo={<Logo />} />
+    </div>
+  )
 }
 
 export default App
