@@ -4,17 +4,10 @@ $darkgray : #808080;
 $black: #202020;
 $outline: #B2FFBF;
 
-$breakpoint-xs: 320px;
-$breakpoint-sm: 576px;
-$breakpoint-md: 992px;
-$breakpoint-lg: 1200px;
-$breakpoint-xl: 1440px;
-
-
-@mixin interText($weight, $size, $height, $color) {
+@mixin interText($weigth, $size, $height, $color) {
 
     font-family: 'Inter';
-    font-weight: $weight;
+    font-weight: $weigth;
     font-style: normal;
     font-size: $size;
     line-height: $height;
