@@ -5,7 +5,7 @@ $black: #202020;
 $outline: #B2FFBF;
 
 @mixin interText($weigth, $size, $height, $color) {
-    
+
     font-family: 'Inter';
     font-weight: $weigth;
     font-style: normal;

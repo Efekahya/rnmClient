@@ -1,5 +1,6 @@
 import React from "react"
-import { Navbar } from "./components/Navbar/index"
+
+import Navbar from "./components/Navbar/index"
 import { ReactComponent as Logo } from "./assets/profile.svg"
 function App() {
   return (
