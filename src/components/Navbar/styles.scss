@@ -1,0 +1,61 @@
+.navbar {
+    background-color: $gray;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.wrapper {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 16px;
+    flex-direction: row;
+    background: $gray;
+    gap: 36px;
+
+}
+
+.searchInput {
+    width: 50%;
+    height: 56px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    padding-left: 50px;
+    font-size: 16px;
+    background: white url(../../assets/search.svg) no-repeat 13px center;
+
+    &:hover {
+        outline: 1px solid $darkgray;
+    }
+
+    &:focus {
+        outline: 1px solid $outline;
+    }
+}
+
+.itemsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 36px;
+}
+
+.items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    @include interText(700, 14px, 17px, $darkgray);
+    gap: 6px;
+}
