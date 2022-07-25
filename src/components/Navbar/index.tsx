@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react"
 import { ReactComponent as ProfileIcon } from "../../assets/profile.svg"
 import { ReactComponent as StarIcon } from "../../assets/star.svg"
-interface NavbarProps {
+interface INavbarProps {
   Logo: ReactElement
 }
-export default function Navbar({ Logo }: NavbarProps) {
+export default function Navbar({ Logo }: INavbarProps) {
   const [searchValue, setSearchValue] = React.useState("")
 
   return (
