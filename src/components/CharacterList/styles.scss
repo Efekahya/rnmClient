@@ -1,36 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 32px);
+  height: 100%;
+  padding: 0;
+  margin: 16px;
+}
+
 .characterList {
-    display: inline-grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 24px;
-    row-gap: 24px;
-    min-width: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 320px;
+  flex: 1 0 auto;
+  max-width: 1150px;
 }
-
 .character {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    border-radius: 8px;
-    @include interText(400, 16px, 19px, $black);
-    gap: 16px;
-    box-sizing: border-box;
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+  margin: 0;
 }
-
 .image {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 @media (max-width: $breakpoint-sm) {
-    .characterList {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  //576px
+  .character {
+    width: calc(50% - 32px);
+  }
 }
 
 @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
-    .characterList {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  // 992px
+  .character {
+    width: calc(33.33% - 32px);
+  }
+}
+@media (min-width: $breakpoint-md) {
+  // 1200px
+  .character {
+    width: calc(25% - 32px);
+  }
 }

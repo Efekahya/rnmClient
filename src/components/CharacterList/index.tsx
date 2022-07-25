@@ -11,23 +11,24 @@ interface ICharacter {
   location: string
   episodes: object[]
 }
-interface CharacterListProps {
+interface ICharacterListProps {
   characters: ICharacter[] //TODO Characterler objesi gelince character tipi ile değiştirilecek
   count: number
 }
 export default function CharacterList({
   characters,
   count,
-}: CharacterListProps) {
+}: ICharacterListProps) {
+  let sliced
   if (count !== -1) {
-    characters = characters.slice(0, count)
+    sliced = characters.slice(0, count)
   }
   return (
-    <>
+    <div className="container">
       <div className="characterList">
-        {characters.map((character) => (
+        {sliced?.map((character) => (
           <div className="character" key={character.id}>
-            <span>
+            <span className="imageContainer">
               <img
                 className="image"
                 src={character.image}
@@ -38,6 +39,6 @@ export default function CharacterList({
           </div>
         ))}
       </div>
-    </>
+    </div>
   )
 }
