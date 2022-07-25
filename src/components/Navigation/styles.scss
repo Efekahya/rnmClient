@@ -1,0 +1,11 @@
+.navigationContainer {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.navigationText {
+    @include interText(700, 16px, 19px, $black);
+}
