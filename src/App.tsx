@@ -1,13 +1,18 @@
-import React from "react"
-
-import Navbar from "./components/Navbar/index"
-import { ReactComponent as Logo } from "./assets/profile.svg"
+import React from "react";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import Dropdown from "./components/Dropdown";
 function App() {
+  const client = new ApolloClient({
+    uri: "https://rickandmortyapi.com/graphql",
+    cache: new InMemoryCache()
+  });
   return (
-    <div className="App">
-      <Navbar Logo={<Logo />} />
-    </div>
-  )
+    <ApolloProvider client={client}>
+      <div className="App">
+        <Dropdown />
+      </div>
+    </ApolloProvider>
+  );
 }
 
-export default App
+export default App;
