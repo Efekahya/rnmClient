@@ -1,24 +1,6 @@
 import React from "react"
 import { ICharacterListProps } from "../../types/interfaces"
 
-<<<<<<< Updated upstream
-=======
-interface ICharacter {
-  name: string
-  id: number
-  gender: string
-  spacies: string
-  origin: string
-  type: string
-  image: string
-  location: string
-  episodes: object[]
-}
-interface ICharacterListProps {
-  characters: ICharacter[] //TODO Change this interface when you get the proper data
-  count: number
-}
->>>>>>> Stashed changes
 export default function CharacterList({
   characters,
   count,
