@@ -1,11 +1,10 @@
-import React, { ReactElement } from "react"
-import { ReactComponent as ProfileIcon } from "../../assets/profile.svg"
-import { ReactComponent as StarIcon } from "../../assets/star.svg"
+import React from "react"
 import { gql, useQuery } from "@apollo/client"
-interface NavbarProps {
-  Logo: ReactElement
-}
-export default function Navbar({ Logo }: NavbarProps) {
+import { ReactComponent as StarIcon } from "../../assets/star.svg"
+import { FilterCharacter, INavbarProps } from "../../types/interfaces"
+import SearchBar from "./_searchBar"
+
+export default function Navbar({ Logo }: INavbarProps) {
   const [searchValue, setSearchValue] = React.useState("")
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,9 +14,6 @@ export default function Navbar({ Logo }: NavbarProps) {
         name: e.target.value,
       },
     })
-    if (data) {
-      console.log(data.characters.info.count, data.characters.results)
-    }
   }
   const QUERY = gql`
     query Characters($filter: FilterCharacter!) {
@@ -31,13 +27,11 @@ export default function Navbar({ Logo }: NavbarProps) {
       }
     }
   `
-  type FilterCharacter = {
-    name: String
-  }
+
   const filter: FilterCharacter = {
     name: "rick",
   }
-  const { loading, error, data, refetch } = useQuery(QUERY, {
+  const { error, refetch } = useQuery(QUERY, {
     variables: {
       filter: filter,
     },
@@ -50,14 +44,10 @@ export default function Navbar({ Logo }: NavbarProps) {
           <a href="/" className="brand">
             {Logo}
           </a>
-          <input
-            type="search"
-            name="search"
-            id="search"
-            className="searchInput"
-            placeholder="Search"
-            onChange={handleSearch}
-            defaultValue={searchValue}
+          <SearchBar
+            handleSearch={handleSearch}
+            searchValue={searchValue}
+            classValue={"searchInput"}
           />
           <div className="itemsContainer">
             <div className="items">
@@ -68,14 +58,10 @@ export default function Navbar({ Logo }: NavbarProps) {
         </div>
       </nav>
       <div className="secondaryInput">
-        <input
-          type="search"
-          name="search"
-          id="search"
-          className="searchInputTwo"
-          placeholder="Search"
-          onChange={handleSearch}
-          defaultValue={searchValue}
+        <SearchBar
+          handleSearch={handleSearch}
+          searchValue={searchValue}
+          classValue={"searchInputTwo"}
         />
       </div>
     </>
