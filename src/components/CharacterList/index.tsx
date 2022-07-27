@@ -1,5 +1,8 @@
 import React from "react"
+import { ICharacterListProps } from "../../types/interfaces"
 
+<<<<<<< Updated upstream
+=======
 interface ICharacter {
   name: string
   id: number
@@ -12,9 +15,10 @@ interface ICharacter {
   episodes: object[]
 }
 interface ICharacterListProps {
-  characters: ICharacter[] //TODO Characterler objesi gelince character tipi ile değiştirilecek
+  characters: ICharacter[] //TODO Change this interface when you get the proper data
   count: number
 }
+>>>>>>> Stashed changes
 export default function CharacterList({
   characters,
   count,
@@ -22,6 +26,8 @@ export default function CharacterList({
   let sliced
   if (count !== -1) {
     sliced = characters.slice(0, count)
+  } else {
+    sliced = characters
   }
   return (
     <div className="container">
