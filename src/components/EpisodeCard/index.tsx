@@ -6,6 +6,8 @@ interface IEpisodeCardProps {
   date: string
   title: string
   description: string
+  favorited: boolean
+  handleSetFavorited: () => void
 }
 
 export default function EpisodeCard({
@@ -13,18 +15,17 @@ export default function EpisodeCard({
   date,
   title,
   description,
+  favorited,
+  handleSetFavorited,
 }: IEpisodeCardProps) {
-  const [isFavorited, setIsFavorited] = React.useState(false)
   return (
     <div className="episodeContainer">
       <div className="psuedo">
         <button
           className="favoriteButton"
-          onClick={() => {
-            setIsFavorited(!isFavorited)
-          }}
+          onClick={handleSetFavorited} //TODO Send request to database to favorite/unfavorite
         >
-          {isFavorited ? (
+          {favorited ? (
             <StarFilledIcon className="inline" />
           ) : (
             <StarIcon className="inline" />
