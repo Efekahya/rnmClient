@@ -1,12 +1,12 @@
 import React from "react"
 import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg"
+const href = window.location.href.split("/").slice(3)
+const hrefUpper: string[] = []
+for (let i = 0; i < href.length; i++) {
+  hrefUpper.push(href[i].charAt(0).toUpperCase() + href[i].slice(1))
+}
+let temp: string
 export default function Navigation() {
-  const href = window.location.href.split("/").slice(3)
-  const hrefUpper: string[] = []
-  for (let i = 0; i < href.length; i++) {
-    hrefUpper.push(href[i].charAt(0).toUpperCase() + href[i].slice(1))
-  }
-  let temp: string
   return (
     <div className="navigationContainer">
       {href.map((item, index) => {
