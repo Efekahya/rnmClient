@@ -1,26 +1,26 @@
-import React from "react"
-import { ICharacterListProps } from "../../types/interfaces"
+import React from "react";
+import { ICharacterListProps } from "../../types/interfaces";
 
 export default function CharacterList({
   characters,
-  count,
+  count
 }: ICharacterListProps) {
-  let sliced
+  let sliced;
   if (count !== -1) {
-    sliced = characters.slice(0, count)
+    sliced = characters.slice(0, count);
   } else {
-    sliced = characters
+    sliced = characters;
   }
   return (
-    <div className="container">
-      <div className="characterList">
+    <div className="characterList--container">
+      <div className="characterList--characterList">
         {sliced?.map(({ image, name, id, origin, spacies }) => (
-          <div className="character" key={id}>
-            <div className="imageContainer">
-              <div className="infoLeft">{origin}</div>
-              <div className="infoRight">{spacies}</div>
+          <div className="characterList--character" key={id}>
+            <div className="characterList--imageContainer">
+              <div className="characterList--infoLeft">{origin}</div>
+              <div className="characterList--infoRight">{spacies}</div>
               <a href={"/characters/" + id}>
-                <img className="image" src={image} alt={name} />
+                <img className="characterList--image" src={image} alt={name} />
               </a>
             </div>
             <span>{name}</span>
@@ -28,5 +28,5 @@ export default function CharacterList({
         ))}
       </div>
     </div>
-  )
+  );
 }
