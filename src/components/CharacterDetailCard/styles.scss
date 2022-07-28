@@ -1,20 +1,19 @@
-.container {
+.characterDetailCard--container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 16px;
     gap: 10px;
     min-width: 320px;
-
     background: #4A614D;
     border-radius: 8px;
     box-sizing: border-box;
 }
 
-.title {
+.characterDetailCard--title {
     @include interText(700, 12px, 15px, #FFFFFF);
 }
 
-.content {
+.characterDetailCard--content {
     @include interText(400, 20px, 24px, #FFFFFF);
 }
