@@ -1,15 +1,17 @@
-.navigationContainer {
+.navigation--navigationContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.navigationText {
+.navigation--navigationText {
   @include interText(700, 16px, 19px, $black);
+
   a {
     text-decoration: none;
     color: $black;
   }
+
   a:hover {
     color: #808080;
   }
