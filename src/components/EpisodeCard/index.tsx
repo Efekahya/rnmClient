@@ -1,14 +1,7 @@
 import React from "react"
 import { ReactComponent as StarIcon } from "../../assets/star.svg"
 import { ReactComponent as StarFilledIcon } from "../../assets/starFilled.svg"
-interface IEpisodeCardProps {
-  episode: string
-  date: string
-  title: string
-  description: string
-  favorited: boolean
-  handleSetFavorited: () => void
-}
+import { IEpisodeCardProps } from "../../types/interfaces"
 
 export default function EpisodeCard({
   episode,
@@ -19,29 +12,29 @@ export default function EpisodeCard({
   handleSetFavorited,
 }: IEpisodeCardProps) {
   return (
-    <div className="episodeContainer">
-      <div className="psuedo">
+    <div className="episodeCard--episodeContainer">
+      <div className="episodeCard--psuedo">
         <button
-          className="favoriteButton"
+          className="episodeCard--favoriteButton"
           onClick={handleSetFavorited} //TODO Send request to database to favorite/unfavorite
         >
           {favorited ? (
-            <StarFilledIcon className="inline" />
+            <StarFilledIcon className="episodeCard--inline" />
           ) : (
-            <StarIcon className="inline" />
+            <StarIcon className="episodeCard--inline" />
           )}
         </button>
       </div>
-      <button className="card">
-        <div className="header">
-          <div className="info">
-            <div className="episode title">{episode}</div>
-            <div className="date">{date}</div>
+      <button className="episodeCard--card">
+        <div className="episodeCard--header">
+          <div className="episodeCard--info">
+            <div className="episodeCard--episode title">{episode}</div>
+            <div className="episodeCard--date">{date}</div>
           </div>
         </div>
-        <div className="body">
-          <div className="title">{title}</div>
-          <div className="secondaryText">{description}</div>
+        <div className="episodeCard--body">
+          <div className="episodeCard--title">{title}</div>
+          <div className="episodeCard--secondaryText">{description}</div>
         </div>
       </button>
     </div>

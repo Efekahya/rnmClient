@@ -1,4 +1,4 @@
-.card {
+.episodeCard--card {
     background: $gray;
     display: flex;
     flex-direction: column;
@@ -15,13 +15,13 @@
     }
 }
 
-.episodeContainer {
+.episodeCard--episodeContainer {
     min-width: 320px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.header {
+.episodeCard--header {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -36,33 +36,33 @@
     }
 }
 
-.episode {
+.episodeCard--episode {
     background: $outline;
     padding: 2px;
     width: fit-content;
     border-radius: 4px;
 }
 
-.date {
+.episodeCard--date {
     @include interText(400, 14px, 17px, #6E6E6E);
 }
 
-.title {
+.episodeCard--title {
     @include interText(700, 16px, 19px, $black);
 }
 
-.secondaryText {
+.episodeCard--secondaryText {
     @include interText(400, 16px, 19px, #6E6E6E);
 }
 
-.body {
+.episodeCard--body {
     display: flex;
     flex-direction: column;
     background: inherit;
     gap: 8px;
 }
 
-.info {
+.episodeCard--info {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -80,20 +80,20 @@ button {
 }
 
 
-.psuedo {
+.episodeCard--psuedo {
     position: absolute;
     width: 100%;
     min-width: 320px;
     height: 0px;
 }
 
-.favoriteButton {
+.episodeCard--favoriteButton {
     position: relative;
     left: -16px;
     top: 26px;
     float: right;
 }
 
-.inline {
+.episodeCard--inline {
     display: inline;
 }
