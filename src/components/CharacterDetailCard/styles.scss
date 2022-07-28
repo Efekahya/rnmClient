@@ -4,9 +4,7 @@
     align-items: flex-start;
     padding: 16px;
     gap: 10px;
-
-    width: 368px;
-    height: 81px;
+    min-width: 320px;
 
     background: #4A614D;
     border-radius: 8px;
@@ -14,29 +12,9 @@
 }
 
 .title {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    color: #FFFFFF;
+    @include interText(700, 12px, 15px, #FFFFFF);
 }
 
 .content {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-
-    /* white */
-
-    color: #FFFFFF;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    @include interText(400, 20px, 24px, #FFFFFF);
 }

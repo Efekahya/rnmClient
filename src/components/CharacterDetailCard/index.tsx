@@ -1,6 +1,5 @@
 import React from "react";
 import { ICharacterDetailCardProps } from "../../types/interfaces";
-import "./styles.scss";
 export default function CharacterDetailCard({
   title,
   content
