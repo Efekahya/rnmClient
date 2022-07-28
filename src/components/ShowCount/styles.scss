@@ -1,4 +1,4 @@
-.container {
+.counter--container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -6,13 +6,13 @@
     gap: 8px;
 }
 
-.count {
+.counter--count {
     @include interText(700, 24px, 29px, $black);
     background-color: $outline;
     border-radius: 4px;
     padding: 4px 8px;
 }
 
-.title {
+.counter--title {
     @include interText(700, 32px, 39px, $black)
 }
