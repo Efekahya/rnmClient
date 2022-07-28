@@ -15,6 +15,7 @@ export default function Navbar({ Logo }: INavbarProps) {
       },
     })
   }
+
   const QUERY = gql`
     query Characters($filter: FilterCharacter!) {
       characters(filter: $filter) {
@@ -31,17 +32,20 @@ export default function Navbar({ Logo }: INavbarProps) {
   const filter: FilterCharacter = {
     name: "rick",
   }
+
   const { error, refetch } = useQuery(QUERY, {
     variables: {
       filter: filter,
     },
   })
+
   if (error) return <p>Error :(</p>
+
   return (
     <>
-      <nav className="navbar">
-        <div className="wrapper">
-          <a href="/" className="brand">
+      <nav className="navbar--navbar">
+        <div className="navbar--wrapper">
+          <a href="/" className="navbar--brand">
             {Logo}
           </a>
           <SearchBar
@@ -49,15 +53,15 @@ export default function Navbar({ Logo }: INavbarProps) {
             searchValue={searchValue}
             classValue={"searchInput"}
           />
-          <div className="itemsContainer">
-            <div className="items">
+          <div className="navbar--itemsContainer">
+            <div className="navbar--items">
               <StarIcon />
               <span>Favorites</span>
             </div>
           </div>
         </div>
       </nav>
-      <div className="secondaryInput">
+      <div className="navbar--secondaryInput">
         <SearchBar
           handleSearch={handleSearch}
           searchValue={searchValue}
