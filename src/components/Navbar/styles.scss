@@ -1,4 +1,4 @@
-.navbar {
+.dropdown--navbar {
     background-color: $gray;
     padding: 0;
     width: 100%;
@@ -8,7 +8,7 @@
     margin: 0 auto;
 }
 
-.wrapper {
+.dropdown--wrapper {
     width: 70%;
     display: flex;
     justify-content: center;
@@ -18,10 +18,9 @@
     flex-direction: row;
     background: $gray;
     gap: 36px;
-
 }
 
-.searchInput {
+.dropdown--searchInput {
     width: 50%;
     height: 56px;
     border-radius: 5px;
@@ -40,7 +39,7 @@
     }
 }
 
-.itemsContainer {
+.dropdown--itemsContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,7 +47,7 @@
     gap: 36px;
 }
 
-.items {
+.dropdown--items {
     display: flex;
     justify-content: center;
     align-items: center;

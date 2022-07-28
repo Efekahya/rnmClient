@@ -9,6 +9,7 @@ export default function Dropdown({ items, selected }: IDropdownProps) {
     event.preventDefault();
     setIsOpen(isOpen => !isOpen);
   };
+
   const click = (
     event: React.MouseEvent<HTMLButtonElement>,
     func: (event: React.MouseEvent<HTMLButtonElement>) => void
@@ -18,19 +19,25 @@ export default function Dropdown({ items, selected }: IDropdownProps) {
   };
 
   return (
-    <div className="container">
-      <button className="dropdown" onClick={handleDropdown}>
+    <div className="dropdown--container">
+      <button className="dropdown--dropdown" onClick={handleDropdown}>
         {selected}
-        <Arrow className={`arrow ${isOpen ? "down" : ""}`} />
+        <Arrow
+          className={`dropdown--arrow ${isOpen ? "dropdown--down" : ""}`}
+        />
       </button>
-      <div className="psuedo">
-        <div className={`itemsContainer ${isOpen ? "open" : ""}`}>
+      <div className="dropdown--psuedo">
+        <div
+          className={`dropdown--itemsContainer ${
+            isOpen ? "dropdown--open" : ""
+          }`}
+        >
           {items.map(({ value, handleClick, label }) => (
-            <div className="item">
+            <div className="dropdown--item">
               <button
                 key={value}
                 value={value}
-                className={"dropdown-item "}
+                className="dropdown--dropdown-item "
                 onClick={event => click(event, handleClick)}
               >
                 {label}
