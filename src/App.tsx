@@ -1,13 +1,12 @@
-import React from "react"
+import React from "react";
 
-import Navbar from "./components/Navbar/index"
-import { ReactComponent as Logo } from "./assets/profile.svg"
+import CharacterDetailCard from "./components/CharacterDetailCard";
 function App() {
   return (
     <div className="App">
-      <Navbar Logo={<Logo />} />
+      <CharacterDetailCard title="Gender" content="Male" />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
