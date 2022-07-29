@@ -6,4 +6,9 @@ export interface IAddFavoritesProps {
       | React.MouseEvent<HTMLDivElement>
       | React.KeyboardEvent<HTMLDivElement>
   ) => void;
+
+export interface ICharacterDetailCardProps {
+  title: string;
+  content: string;
+
 }
