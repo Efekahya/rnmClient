@@ -19,7 +19,7 @@ export default function AddFavorites({
       <div className={`favorites--container ${themeClass}`}>
         <StarIcon
           aria-label="Add to favorites"
-          className={`starIcon ${favorited ? "favorited" : ""}`}
+          className={`starIcon ${favorited && "favorited"}`}
         />
         <div className="favorites--text">Add to Favorites</div>
       </div>
