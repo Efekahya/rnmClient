@@ -9,7 +9,23 @@ export interface ICharacter {
   location: string
   episodes: object[]
 }
+
 export interface ICharacterListProps {
   characters: ICharacter[] //TODO Characterler objesi gelince character tipi ile değiştirilecek
   count: number
+}
+
+export interface IAddFavoritesProps {
+  themeClass: string;
+  favorited: boolean;
+  toggleFavorite: (
+    event:
+      | React.MouseEvent<HTMLDivElement>
+      | React.KeyboardEvent<HTMLDivElement>
+  ) => void;
+}
+
+export interface ICharacterDetailCardProps {
+  title: string;
+  content: string;
 }
