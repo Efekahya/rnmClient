@@ -1,39 +1,40 @@
-import React from "react"
-import { gql, useQuery } from "@apollo/client"
+import React, { useCallback } from "react"
+import { useQuery } from "@apollo/client"
 import { ReactComponent as StarIcon } from "../../assets/star.svg"
 import { FilterCharacter, INavbarProps } from "../../types/interfaces"
 import SearchBar from "./_searchBar"
+import { NAVBAR_SEARCH } from "../../schemas/queries"
 
 export default function Navbar({ Logo }: INavbarProps) {
   const [searchValue, setSearchValue] = React.useState("")
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
+  const handleSearch = (e: string) => {
+    setSearchValue(e)
     refetch({
       filter: {
-        name: e.target.value,
+        name: e,
       },
     })
   }
 
-  const QUERY = gql`
-    query Characters($filter: FilterCharacter!) {
-      characters(filter: $filter) {
-        info {
-          count
-        }
-        results {
-          name
-        }
-      }
+  const debounce = (func: Function) => {
+    let timer: NodeJS.Timeout | null
+    return wrapper
+    function wrapper(...args: any[]) {
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(() => {
+        timer = null
+        func(...args)
+      }, 500)
     }
-  `
+  }
+  const debounceFn = useCallback(debounce(handleSearch), [])
 
   const filter: FilterCharacter = {
     name: "rick",
   }
 
-  const { error, refetch } = useQuery(QUERY, {
+  const { error, refetch } = useQuery(NAVBAR_SEARCH, {
     variables: {
       filter: filter,
     },
@@ -49,7 +50,7 @@ export default function Navbar({ Logo }: INavbarProps) {
             {Logo}
           </a>
           <SearchBar
-            handleSearch={handleSearch}
+            handleSearch={(e) => debounceFn(e.target.value)}
             searchValue={searchValue}
             classValue={"searchInput"}
           />
@@ -63,7 +64,7 @@ export default function Navbar({ Logo }: INavbarProps) {
       </nav>
       <div className="navbar--secondaryInput">
         <SearchBar
-          handleSearch={handleSearch}
+          handleSearch={(e) => debounceFn(e.target.value)}
           searchValue={searchValue}
           classValue={"searchInputTwo"}
         />
