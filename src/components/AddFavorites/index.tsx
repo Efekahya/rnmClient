@@ -1,34 +1,28 @@
 import React from "react";
 import { ReactComponent as StarIcon } from "../../assets/star.svg";
 import { IAddFavoritesProps } from "../../types/interfaces";
+
 export default function AddFavorites({
-  backgroundColor,
-  textColor,
+  themeClass,
   favorited,
   toggleFavorite
 }: IAddFavoritesProps) {
   return (
-    <button className="favorites--button" onClick={toggleFavorite}>
-      <div
-        className="favorites--container"
-        style={{ backgroundColor: `var(${backgroundColor})` }}
-      >
+    <div
+      className="favorites--button"
+      onClick={toggleFavorite}
+      onKeyDown={toggleFavorite}
+      aria-label="Add to favorites"
+      role="button"
+      tabIndex={0}
+    >
+      <div className={`favorites--container ${themeClass}`}>
         <StarIcon
-          style={
-            favorited
-              ? {
-                  fill: `var(${textColor})`,
-                  stroke: `var(${textColor})`
-                }
-              : {
-                  stroke: `var(${textColor})`
-                }
-          }
+          aria-label="Add to favorites"
+          className={`starIcon ${favorited ? "favorited" : ""}`}
         />
-        <div className="favorites--text" style={{ color: `var(${textColor})` }}>
-          Add to Favorites
-        </div>
+        <div className="favorites--text">Add to Favorites</div>
       </div>
-    </button>
+    </div>
   );
 }

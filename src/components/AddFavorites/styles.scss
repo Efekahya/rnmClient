@@ -16,4 +16,41 @@
     height: 100%;
     margin: 0px;
     box-sizing: border-box;
+
+    &:focus-visible {
+        outline: auto;
+    }
+}
+
+.black {
+    background-color: $black;
+
+    .favorited {
+        fill: $outline;
+        stroke: $outline;
+    }
+
+    .starIcon {
+        stroke: $outline;
+    }
+
+    .favorites--text {
+        color: $outline;
+    }
+}
+
+.white {
+
+    .favorited {
+        fill: $black;
+        stroke: $black;
+    }
+
+    .starIcon {
+        stroke: $black;
+    }
+
+    .favorites--text {
+        color: $black;
+    }
 }

@@ -1,6 +1,9 @@
 export interface IAddFavoritesProps {
-  backgroundColor: string;
-  textColor: string;
+  themeClass: string;
   favorited: boolean;
-  toggleFavorite: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  toggleFavorite: (
+    event:
+      | React.MouseEvent<HTMLDivElement>
+      | React.KeyboardEvent<HTMLDivElement>
+  ) => void;
 }
