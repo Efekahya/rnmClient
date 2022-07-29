@@ -1,15 +1,14 @@
-$active :#B3FFBF;
-$gray : #F5F5F5;
-$darkgray : #808080;
-$black: #202020;
-$outline: #B2FFBF;
+    $active : #B3FFBF;
+    $gray : #F5F5F5;
+    $darkgray : #808080;
+    $black: #202020;
+    $outline: #B2FFBF;
 
-@mixin interText($weigth, $size, $height, $color) {
-
-    font-family: 'Inter';
-    font-weight: $weigth;
-    font-style: normal;
-    font-size: $size;
-    line-height: $height;
-    color: $color;
-}
+    @mixin interText($weigth, $size, $height, $color) {
+        font-family: 'Inter';
+        font-weight: $weigth;
+        font-style: normal;
+        font-size: $size;
+        line-height: $height;
+        color: $color;
+    }
