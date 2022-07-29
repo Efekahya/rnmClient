@@ -1,0 +1,99 @@
+.episodeCard--card {
+    background: $gray;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 16px;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+        background: white;
+        box-shadow: -8px 11px 53px rgba(0, 0, 0, 0.13);
+    }
+}
+
+.episodeCard--episodeContainer {
+    min-width: 320px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.episodeCard--header {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: inherit;
+    gap: 6px;
+
+    button {
+        all: unset;
+        cursor: pointer;
+    }
+}
+
+.episodeCard--episode {
+    background: $outline;
+    padding: 2px;
+    width: fit-content;
+    border-radius: 4px;
+}
+
+.episodeCard--date {
+    @include interText(400, 14px, 17px, #6E6E6E);
+}
+
+.episodeCard--title {
+    @include interText(700, 16px, 19px, $black);
+}
+
+.episodeCard--secondaryText {
+    @include interText(400, 16px, 19px, #6E6E6E);
+}
+
+.episodeCard--body {
+    display: flex;
+    flex-direction: column;
+    background: inherit;
+    gap: 8px;
+}
+
+.episodeCard--info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+button {
+    all: unset;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &:active {
+        background: #E7F3E9 !important;
+    }
+}
+
+
+.episodeCard--psuedo {
+    position: absolute;
+    width: 100%;
+    min-width: 320px;
+    height: 0px;
+}
+
+.episodeCard--favoriteButton {
+    position: relative;
+    left: -16px;
+    top: 26px;
+    float: right;
+}
+
+.episodeCard--inline {
+    display: inline;
+}
