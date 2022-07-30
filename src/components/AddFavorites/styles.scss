@@ -3,7 +3,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
     height: 100%;
     gap: 16px;
     box-sizing: border-box;
@@ -12,7 +11,6 @@
 
 .favorites--button {
     all: unset;
-    width: 100%;
     height: 100%;
     margin: 0px;
     box-sizing: border-box;
@@ -37,6 +35,11 @@
     .favorites--text {
         color: $outline;
     }
+
+}
+
+.transparent {
+    background-color: transparent;
 }
 
 .white {
