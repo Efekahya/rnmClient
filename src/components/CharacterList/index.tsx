@@ -11,7 +11,6 @@ export default function CharacterList({
   } else {
     sliced = characters;
   }
-  console.log("origin", sliced);
   return (
     <div className="characterList--container">
       <div className="characterList--characterList">
