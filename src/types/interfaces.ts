@@ -2,8 +2,11 @@ export interface ICharacter {
   name: string;
   id: number;
   gender: string;
-  spacies: string;
-  origin: string;
+  species: string;
+  origin: {
+    __typename: string;
+    name: string;
+  };
   type: string;
   image: string;
   location: string;
