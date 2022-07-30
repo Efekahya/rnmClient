@@ -7,6 +7,8 @@ import CharacterList from "../../components/CharacterList";
 import EpisodeCard from "../../components/EpisodeCard";
 
 export default function Home() {
+  const [favorited, setFavorited] = React.useState<number[]>([]);
+
   const characters = useQuery(GetCharacters, {
     variables: {
       page: 1
@@ -36,17 +38,21 @@ export default function Home() {
       index: number
     ) => {
       if (index < 6) {
+        const isFavorited = favorited.includes(id);
         return (
-          <div className="homepage-items">
+          <div className="homepage-item" key={id}>
             <EpisodeCard
-              key={id}
               date={air_date}
               title={name}
               episode={episode}
               description={"lorem ipsum"}
-              favorited={false}
+              favorited={isFavorited}
               handleSetFavorited={() => {
-                console.log("favorited");
+                if (favorited.includes(id)) {
+                  setFavorited(favorited.filter(item => item !== id));
+                } else {
+                  setFavorited([...favorited, id]);
+                }
               }}
             />
           </div>
@@ -54,7 +60,6 @@ export default function Home() {
       }
     }
   );
-  console.log("episodes", episodes.data.episodes.results);
   return (
     <>
       <ShowCount
@@ -66,7 +71,9 @@ export default function Home() {
         count={8}
       />
       <ShowCount count={episodes.data.episodes.info.count} title="Episodes" />
-      <div className="homepage-container">{episodesArray}</div>
+      <div className="homepage-container">
+        <div className="homepage-items">{episodesArray}</div>
+      </div>
     </>
   );
 }

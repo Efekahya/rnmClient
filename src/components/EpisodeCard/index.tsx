@@ -1,7 +1,6 @@
-import React from "react"
-import { ReactComponent as StarIcon } from "../../assets/star.svg"
-import { ReactComponent as StarFilledIcon } from "../../assets/starFilled.svg"
-import { IEpisodeCardProps } from "../../types/interfaces"
+import React from "react";
+import { ReactComponent as StarIcon } from "../../assets/star.svg";
+import { IEpisodeCardProps } from "../../types/interfaces";
 
 export default function EpisodeCard({
   episode,
@@ -9,7 +8,7 @@ export default function EpisodeCard({
   title,
   description,
   favorited,
-  handleSetFavorited,
+  handleSetFavorited
 }: IEpisodeCardProps) {
   return (
     <div className="episodeCard--episodeContainer">
@@ -18,11 +17,11 @@ export default function EpisodeCard({
           className="episodeCard--favoriteButton"
           onClick={handleSetFavorited} //TODO Send request to database to favorite/unfavorite
         >
-          {favorited ? (
-            <StarFilledIcon className="episodeCard--inline" />
-          ) : (
-            <StarIcon className="episodeCard--inline" />
-          )}
+          <StarIcon
+            className={`episodeCard--inline ${
+              favorited ? "episodeCard-filled" : "episodeCard-empty"
+            }`}
+          />
         </button>
       </div>
       <button className="episodeCard--card">
@@ -38,5 +37,5 @@ export default function EpisodeCard({
         </div>
       </button>
     </div>
-  )
+  );
 }
