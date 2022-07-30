@@ -1,8 +1,13 @@
 import React from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import "./styles.scss";
-
+import {
+  BrowserRouter,
+  BrowserRouter as Routes,
+  Route
+} from "react-router-dom";
 import Home from "./pages/Home";
+import Character from "./pages/Character";
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
   cache: new InMemoryCache()
@@ -11,9 +16,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <Home />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </ApolloProvider>
   );
 }
