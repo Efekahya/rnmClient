@@ -16,6 +16,12 @@ export const GetCharacter = gql`
         name
       }
       image
+      episode {
+        id
+        name
+        air_date
+        episode
+      }
       created
     }
   }
