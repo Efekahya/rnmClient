@@ -4,18 +4,31 @@
     align-items: center;
 }
 
-.character-details {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.character-name-container {
+.character-details-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    margin: 16px;
+}
+
+.character-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.character-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    align-self: flex-start;
 }
 
 .character-name {
@@ -23,6 +36,7 @@
     justify-content: flex-start;
     align-items: center;
     color: white;
+    width: 100%;
 }
 
 .character-name-text {
@@ -39,6 +53,7 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
+    width: 100%;
 }
 
 .character-info {
@@ -50,18 +65,22 @@
     width: 100%;
     max-width: 760px;
     gap: 24px;
+    flex: 1 0 auto;
 }
 
 .character-image {
     border-radius: 8px;
 }
 
-.character-episode-counter {
+.character-episode-frame {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    width: 80%;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .character-episode-container {
@@ -69,22 +88,40 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 24px;
-    padding-top: 24px;
+    width: calc(100% - 32px);
+    height: 100%;
+    margin: 0;
+    max-width: 1124px;
+    position: relative;
+}
+
+.character-episode {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .character-episode-items {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    width: 80%;
+    width: 100%;
     position: relative;
     flex-wrap: wrap;
     max-height: 150px;
+    gap: 24px;
 }
 
-.character-showmore-button {
+.character-episode-item {
+    width: calc(33.33% - 16px);
+}
+
+.character-episode-showmore {
     all: unset;
     position: absolute;
     border-radius: 50%;
@@ -96,26 +133,24 @@
     align-items: center;
     justify-content: center;
 
-    left: -30px;
+    left: calc(100% - 24px);
+    top: -4px;
+    z-index: 1;
 
     &:hover {
         background-color: #DEDEDE;
     }
 }
 
-.character-showmore-psuedo {
-    position: relative;
+.character-episode-showmore-psuedo {
+    position: absolute;
     width: 0px;
     height: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.character-episode-item {
-    margin: 8px;
-    width: calc(33.33% - 16px);
-
+    float: right;
+    width: 100%;
 }
 
 @media (max-width: $breakpoint-md) {
@@ -130,5 +165,26 @@
 
     .character-episode-item {
         width: calc(50% - 16px);
+    }
+
+    .character-name {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+    .characterDetailCard--container {
+        width: 50%;
+    }
+
+}
+
+@media (max-width: $breakpoint-sm) {
+    .character-episode-item {
+        width: 100%;
+    }
+
+    .character-episode-showmore-psuedo {
+        display: none;
     }
 }
