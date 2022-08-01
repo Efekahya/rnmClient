@@ -14,6 +14,13 @@ export interface ICharacterListProps {
   characters: ICharacter[]; //TODO Characterler objesi gelince character tipi ile değiştirilecek
   count: number;
 }
+
+export interface IEpisode {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+}
 export interface IEpisodeCardProps {
   episode: string;
   date: string;

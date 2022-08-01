@@ -1,0 +1,74 @@
+.episodes-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.episodes-page-items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    flex-wrap: wrap;
+    flex: 1 0 auto;
+    gap: 24px;
+    max-width: 1200px;
+}
+
+.episodes-page-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(33.33% - 24px);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.episodes-page-showcount-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.episodes-page-showcount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    max-width: 1200px;
+}
+
+@media (max-width: $breakpoint-md) {
+    .episodes-page-item {
+        width: calc(50% - 12px);
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .episodes-page-item {
+        width: 100%;
+    }
+}

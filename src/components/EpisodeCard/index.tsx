@@ -1,7 +1,9 @@
-import React from "react"
-import { ReactComponent as StarIcon } from "../../assets/star.svg"
-import { ReactComponent as StarFilledIcon } from "../../assets/starFilled.svg"
-import { IEpisodeCardProps } from "../../types/interfaces"
+import React from "react";
+
+import { ReactComponent as StarIcon } from "../../assets/star.svg";
+import { ReactComponent as StarFilledIcon } from "../../assets/starFilled.svg";
+
+import { IEpisodeCardProps } from "../../types/interfaces";
 
 export default function EpisodeCard({
   episode,
@@ -9,7 +11,7 @@ export default function EpisodeCard({
   title,
   description,
   favorited,
-  handleSetFavorited,
+  handleSetFavorited
 }: IEpisodeCardProps) {
   return (
     <div className="episodeCard--episodeContainer">
@@ -38,5 +40,5 @@ export default function EpisodeCard({
         </div>
       </button>
     </div>
-  )
+  );
 }
