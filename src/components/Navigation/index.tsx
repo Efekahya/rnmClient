@@ -23,7 +23,7 @@ const urlsArray = href.map((url, index) => {
 const elements = urlsArray.map((url, index) => (
   <>
     <div key={index} className="navigation--navigationText">
-      <a href={"/" + url}>{hrefUpper[index]}</a>
+      <a href={`/ ${url}`}>{hrefUpper[index]}</a>
     </div>
     <RightArrow />
   </>
