@@ -15,7 +15,7 @@ const urlsArray = href.map((url, index) => {
     temp = url
     return url
   } else {
-    temp += "/" + url
+    temp += `/ ${url}`
     return temp
   }
 })
