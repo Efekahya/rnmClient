@@ -2,12 +2,18 @@ export interface ICharacter {
   name: string;
   id: number;
   gender: string;
-  spacies: string;
-  origin: string;
+  species: string;
+  origin: ILocation;
   type: string;
   image: string;
-  location: string;
+  location: ILocation;
   episodes: object[];
+}
+
+export interface ILocation {
+  name: string;
+  dimension: string;
+  type: string;
 }
 
 export interface ICharacterListProps {

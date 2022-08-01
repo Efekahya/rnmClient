@@ -1,0 +1,134 @@
+import React from "react";
+import { useQuery } from "@apollo/client";
+
+import { ReactComponent as Arrow } from "../../assets/arrow.svg";
+import { GetEpisode } from "../../queries/queries";
+import AddFavorites from "../../components/AddFavorites";
+import CharacterList from "../../components/CharacterList";
+import ShowCount from "../../components/ShowCount";
+import { ICharacter, ILocation } from "../../types/interfaces";
+const id = window.location.href.split("/")[4];
+
+export default function EpisodeDetails() {
+  const [showMore, setShowMore] = React.useState(false);
+
+  const { loading, error, data } = useQuery(GetEpisode, {
+    variables: {
+      id: id
+    }
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  const locationsArray = data.episode.characters.map((element: ICharacter) => {
+    return {
+      name: element.location.name,
+      dimension: element.location.dimension,
+      type: element.location.type
+    };
+  });
+
+  const uniqueLocations = Array.from(
+    new Map<ILocation, ILocation>(
+      locationsArray.map((x: ILocation) => [x["name"], x])
+    ).values()
+  )
+    .filter(x => {
+      return x.name !== "unknown";
+    })
+    .map(({ name, type, dimension }) => {
+      return (
+        <>
+          <div className="location-container">
+            <div className="location-title">
+              <div className="location-name">{name}</div>
+              <div className="location-type">{type}</div>
+            </div>
+            <div className="location-dimension">{dimension}</div>
+          </div>
+        </>
+      );
+    });
+  return (
+    <div>
+      <div className="episode-detailsPage-frame">
+        <div className="episode-detailsPage-container">
+          <div className="episode-detailsPage-goBack">
+            <a href="/episodes">
+              <Arrow className="arrow" />
+              Episode List
+            </a>
+          </div>
+          <div className="episode-detailsPage-selectEpisode">
+            <a href={`/episodes/${data.episode.id - 1}`}>
+              <Arrow className="arrow" />
+            </a>
+            {data.episode.episode}
+            <a href={`/episodes/${parseInt(data.episode.id) + 1}`}>
+              <Arrow className="arrow-right" />
+            </a>
+          </div>
+          <div className="episode-detailsPage-header">
+            <div className="episode-detailsPage-info">
+              <div className="episode-detailsPage-title">
+                <div className="episode-detailsPage-title-text">
+                  {data.episode.name}
+                </div>
+              </div>
+              <div className="episode-detailsPage-episode">
+                <div className="episode-detailsPage-episode-text">
+                  {data.episode.episode}
+                </div>
+              </div>
+              <div className="episode-detailsPage-addtofavorite">
+                <AddFavorites
+                  themeClass="black transparent"
+                  favorited={false}
+                  toggleFavorite={() => console.log("here")}
+                />
+              </div>
+            </div>
+            <div className="episode-detailsPage-date">
+              <b>Aired:</b> {data.episode.air_date}
+            </div>
+          </div>
+          <div
+            className={`episode-detailsPage-description ${
+              showMore ? "showMore" : ""
+            }`}
+          >
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
+            quisquam officia ex quae ut eius rerum, aperiam quasi debitis eos
+            est in asperiores aliquam quos ab perferendis, sed voluptatem nemo!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+            iure deleniti tempora reprehenderit, nulla adipisci hic fugit
+            similique ullam magnam excepturi. Quis, eligendi. Similique
+            repellendus inventore non laborum modi odit. Nulla, atque culpa.
+            Quas illo aliquid porro! Voluptatem consequuntur debitis magnam
+            dolores, odio adipisci, illo officiis voluptate dolore cupiditate,
+            laudantium possimus expedita quibusdam soluta praesentium ex amet!
+            Beatae, corporis nostrum. Consequatur placeat voluptates, officia
+            odio optio numquam possimus id a, nulla, nobis quam? Perferendis ad
+            in facilis accusantium quibusdam aliquam totam iure repellendus
+            praesentium, at sint, ipsam quis earum voluptatibus!
+          </div>
+          <div className="episode-detailsPage-showMore">
+            <button onClick={() => setShowMore(showMore => !showMore)}>
+              {showMore ? "Show Less" : "Show More"}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="episode-detailsPage-characters">
+        <ShowCount count={data.episode.characters.length} title="Characters" />
+        <CharacterList characters={data.episode.characters} count={4} />
+      </div>
+      <div className="episode-detailsPage-locations">
+        <ShowCount count={uniqueLocations.length} title="Locations" />
+        <div className="location-items">
+          <div className="location-frame">{uniqueLocations}</div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -19,6 +19,16 @@
     min-width: 320px;
     width: 100%;
     box-sizing: border-box;
+
+    button {
+        all: unset;
+        cursor: pointer;
+        border-radius: 8px;
+
+        &:active {
+            background: #E7F3E9 !important;
+        }
+    }
 }
 
 .episodeCard--header {
@@ -67,18 +77,6 @@
     flex-direction: column;
     gap: 8px;
 }
-
-
-button {
-    all: unset;
-    cursor: pointer;
-    border-radius: 8px;
-
-    &:active {
-        background: #E7F3E9 !important;
-    }
-}
-
 
 .episodeCard--psuedo {
     position: absolute;
