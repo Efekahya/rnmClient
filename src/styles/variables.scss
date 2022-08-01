@@ -11,7 +11,8 @@ $breakpoint-lg: 1200px;
 $breakpoint-xl: 1440px;
 
 @mixin interText($weight, $size, $height, $color) {
-  font-family: "Inter";
+
+  font-family: 'Inter';
   font-weight: $weight;
   font-style: normal;
   font-size: $size;
