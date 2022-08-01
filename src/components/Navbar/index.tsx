@@ -66,7 +66,7 @@ export default function Navbar({ Logo }: INavbarProps) {
         <SearchBar
           handleSearch={(e) => debounceFn(e.target.value)}
           searchValue={searchValue}
-          classValue={"searchInputTwo"}
+          classValue="searchInputTwo"
         />
       </div>
     </>
