@@ -52,7 +52,7 @@ export default function Navbar({ Logo }: INavbarProps) {
           <SearchBar
             handleSearch={(e) => debounceFn(e.target.value)}
             searchValue={searchValue}
-            classValue={"searchInput"}
+            classValue="searchInput"
           />
           <div className="navbar--itemsContainer">
             <div className="navbar--items">
