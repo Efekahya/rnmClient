@@ -5,7 +5,7 @@ import SearchBar from "./_searchBar";
 
 import { ReactComponent as StarIcon } from "../../assets/star.svg";
 import { FilterCharacter, INavbarProps } from "../../types/interfaces";
-import { NAVBAR_SEARCH } from "../../schemas/queries";
+import { NavbarSearch } from "../../queries/queries";
 
 export default function Navbar({ Logo }: INavbarProps) {
   const [searchValue, setSearchValue] = React.useState("");
@@ -36,7 +36,7 @@ export default function Navbar({ Logo }: INavbarProps) {
     name: "rick"
   };
 
-  const { error, refetch } = useQuery(NAVBAR_SEARCH, {
+  const { error, refetch } = useQuery(NavbarSearch, {
     variables: {
       filter: filter
     }
@@ -54,7 +54,7 @@ export default function Navbar({ Logo }: INavbarProps) {
           <SearchBar
             handleSearch={e => debounceFn(e.target.value)}
             searchValue={searchValue}
-            classValue="searchInput"
+            classValue="navbar--searchInput"
           />
           <div className="navbar--itemsContainer">
             <div className="navbar--items">

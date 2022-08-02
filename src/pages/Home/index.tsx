@@ -1,10 +1,15 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import "./styles.scss";
+
 import { GetCharacters, GetEpisodes } from "../../queries/queries";
+
 import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 import EpisodeCard from "../../components/EpisodeCard";
+import Navbar from "../../components/Navbar";
+
+import { ReactComponent as Logo } from "../../assets/digieggs.svg";
+import "./styles.scss";
 
 export default function Home() {
   const [favorited, setFavorited] = React.useState<number[]>([]);
@@ -62,17 +67,25 @@ export default function Home() {
   );
   return (
     <>
-      <ShowCount
-        count={characters.data.characters.info.count}
-        title="Characters"
-      />
-      <CharacterList
-        characters={characters.data.characters.results}
-        count={8}
-      />
-      <ShowCount count={episodes.data.episodes.info.count} title="Episodes" />
-      <div className="homepage-container">
-        <div className="homepage-items">{episodesArray}</div>
+      <div className="homepage-main-frame">
+        <Navbar Logo={<Logo />} />
+        <div className="homepage-main-container">
+          <ShowCount
+            count={characters.data.characters.info.count}
+            title="Characters"
+          />
+          <CharacterList
+            characters={characters.data.characters.results}
+            count={8}
+          />
+          <ShowCount
+            count={episodes.data.episodes.info.count}
+            title="Episodes"
+          />
+          <div className="homepage-container">
+            <div className="homepage-items">{episodesArray}</div>
+          </div>
+        </div>
       </div>
     </>
   );

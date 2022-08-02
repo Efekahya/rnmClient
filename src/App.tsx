@@ -1,11 +1,7 @@
 import React from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import "./styles.scss";
-import {
-  BrowserRouter,
-  BrowserRouter as Routes,
-  Route
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Character from "./pages/Character";
 const client = new ApolloClient({
