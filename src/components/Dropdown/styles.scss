@@ -1,0 +1,87 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    @include interText(700, 16px, 19px, $black);
+}
+
+.dropdown {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 56px;
+    padding: 16px;
+    margin-bottom: 8px;
+    background: $gray;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    &:active {
+        background: $black ;
+    }
+
+    &:hover {
+        background: $grayer;
+    }
+}
+
+.itemsContainer {
+    all: unset;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: $gray;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+}
+
+.psuedo {
+    position: relative;
+    width: 100%;
+}
+
+.open {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    display: flex;
+}
+
+.dropdown-item {
+    all: unset;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    &:hover {
+        background: #E6E6E6;
+    }
+
+    &:active {
+        background: #BBBBBB;
+    }
+}
+
+.item {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    box-sizing: border-box;
+    background: $gray;
+}
+
+.down {
+    transform: rotate(180deg);
+}
+
+.arrow {
+    transition: transform 0.2s ease-in-out;
+}
