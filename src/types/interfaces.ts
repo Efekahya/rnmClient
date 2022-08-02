@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export interface ICharacter {
   id: number;
   name: string;
@@ -63,4 +65,26 @@ export interface IAddFavoritesProps {
 export interface ICharacterDetailCardProps {
   title: string;
   content: string;
+}
+
+export type FilterCharacter = {
+  name: string;
+};
+export interface INavbarProps {
+  Logo: ReactElement;
+}
+
+export interface ISearchBarProps {
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  searchValue: string;
+  classValue: string;
+interface IDropdownItem {
+  label: string;
+  value: string;
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface IDropdownProps {
+  items: IDropdownItem[];
+  selected: string;
 }
