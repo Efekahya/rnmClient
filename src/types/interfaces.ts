@@ -25,6 +25,7 @@ export interface IEpisode {
   characters: [ICharacter];
   created: string;
 }
+
 export interface IEpisodeCardProps {
   episode: string;
   date: string;
@@ -52,6 +53,7 @@ export interface ICharacterDetailCardProps {
 export type FilterCharacter = {
   name: string;
 };
+
 export interface INavbarProps {
   Logo: ReactElement;
 }
@@ -60,6 +62,8 @@ export interface ISearchBarProps {
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
   searchValue: string;
   classValue: string;
+}
+
 interface IDropdownItem {
   label: string;
   value: string;
