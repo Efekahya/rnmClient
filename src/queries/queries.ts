@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client"
+import { gql } from "@apollo/client";
 
-export const NAVBAR_SEARCH = gql`
+export const NavbarSearch = gql`
   query Characters($filter: FilterCharacter!) {
     characters(filter: $filter) {
       info {
@@ -11,4 +11,4 @@ export const NAVBAR_SEARCH = gql`
       }
     }
   }
-`
+`;
