@@ -1,3 +1,25 @@
+.counter--link {
+    all: unset;
+    cursor: pointer;
+    padding: 16px;
+
+    &:hover {
+        color: red !important;
+
+        .counter--title {
+            color: $darkgray;
+        }
+
+        .counter--count {
+            color: $darkgray;
+        }
+
+        .counter--arrow path {
+            stroke: $darkgray;
+        }
+    }
+}
+
 .counter--container {
     display: flex;
     flex-direction: row;
