@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 @import "./styles/variables.scss";
 
 @import "./components/Navbar/styles.scss";
@@ -6,6 +7,7 @@
 @import "./components/EpisodeCard/styles.scss";
 @import "./components/AddFavorites/styles.scss";
 @import "./components/CharacterDetailCard/styles.scss";
+@import "./components/Navigation/styles.scss";
 
 body {
   margin: 0;
