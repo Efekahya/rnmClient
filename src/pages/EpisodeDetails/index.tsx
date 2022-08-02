@@ -49,6 +49,7 @@ export default function EpisodeDetails() {
         </>
       );
     });
+
   return (
     <div>
       <div className="episode-detailsPage-frame">
