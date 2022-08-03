@@ -13,6 +13,7 @@ import {
 import { NavbarSearch } from "../../queries/queries";
 import CharacterList from "../CharacterList";
 import EpisodeCard from "../EpisodeCard";
+import ShowCount from "../ShowCount";
 
 export default function Navbar({ Logo }: INavbarProps) {
   const [searchValue, setSearchValue] = React.useState("");
@@ -113,7 +114,7 @@ export default function Navbar({ Logo }: INavbarProps) {
           ({ id, name, air_date, episode }: IEpisode) => {
             return (
               <>
-                <div className="episodes-page-item">
+                <div className="navbar-episodes-item">
                   <EpisodeCard
                     key={id}
                     title={name}
@@ -211,13 +212,23 @@ export default function Navbar({ Logo }: INavbarProps) {
         (isCharacter ? (
           characters.length > 0 ? (
             <div className="navbar-searchResult">
+              <div className="navbar-count">
+                <div className="navbar-search-header">Search Results</div>
+                <ShowCount count={characters.length} title="Characters" />
+              </div>
               <CharacterList characters={characters} count={-1} />
             </div>
           ) : (
             <p>No Results</p>
           )
         ) : episodes.length > 0 ? (
-          <div className="navbar-searchResult">{episodeArray}</div>
+          <div className="navbar-searchResult">
+            <div className="navbar-count">
+              <div className="navbar-search-header">Search Results</div>
+              <ShowCount count={episodes.length} title="Episodes" />
+            </div>
+            <div className="navbar-search-episodes">{episodeArray}</div>
+          </div>
         ) : (
           <p>No Results</p>
         ))}

@@ -141,7 +141,46 @@
   position: absolute;
   width: 100%;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
 }
+
+.navbar-count {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  @include interText(700, 14px, 17px, $darkgray);
+  gap: 6px;
+  max-width: 1150px;
+}
+
+.navbar-search-header {
+  @include interText(700, 32px, 39px, $black);
+  text-align: left;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.navbar-search-episodes {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1120px;
+  gap: 12px;
+  flex: 1 0 auto;
+}
+
+.navbar-episodes-item {
+  width: calc(33.33% - 24px);
+}
+
 
 @media (max-width: $breakpoint-md) {
   .navbar--searchInput {
@@ -172,6 +211,16 @@
 
   .navbar-dropdown-container {
     height: 100%;
+    width: 100%;
+  }
+
+  .navbar-episodes-item {
+    width: calc(50% - 12px);
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .navbar-episodes-item {
     width: 100%;
   }
 }
