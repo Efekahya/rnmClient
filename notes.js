@@ -1,3 +1,5 @@
+//!----------------------    Components    ----------------------
+
 //*----------------------ShowCount
 //  TODO: Need to onclick action to showCount component to redirect to the page that it refers to
 
@@ -12,6 +14,14 @@
 
 //*----------------------CharacterDetails
 //  TODO: Write proper component functions instead of placeholders 
+
+
+//!----------------------      Pages      ----------------------
+
+//*----------------------Search page 
+//? FIXME: Dropdown items are not changing the search input value
+
+
 
 
 
