@@ -10,16 +10,18 @@ import EpisodeCard from "../../components/EpisodeCard";
 import ShowCount from "../../components/ShowCount";
 
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
+import LoadingSpinner from "../../components/LoadingSpinner";
+
 const id = window.location.pathname.split("/")[2];
 
 export default function CharacterDetails() {
   const { loading, error, data } = useQuery(GetCharacter, {
     variables: {
-      id: id
+      id
     }
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <p>Error :(</p>;
 
   const episodes = data.character.episode.map(
@@ -42,6 +44,24 @@ export default function CharacterDetails() {
           </div>
         );
       }
+    }
+  );
+
+  const characterDetails = [
+    { title: "Status", value: data.character.status },
+    { title: "Gender", value: data.character.gender },
+    { title: "Species", value: data.character.species },
+    { title: "Origin", value: data.character.origin.name },
+    {
+      title: "Type",
+      value: data.character.type === "" ? "Unknown" : data.character.type
+    },
+    { title: "Location", value: data.character.location.name }
+  ];
+
+  const characterDetailsArray = characterDetails.map(
+    ({ title, value }: { title: string; value: string }) => {
+      return <CharacterDetailCard title={title} content={value} />;
     }
   );
 
@@ -70,34 +90,7 @@ export default function CharacterDetails() {
                   className="character-image"
                 />
               </div>
-              <div className="character-info">
-                <CharacterDetailCard
-                  title="Status"
-                  content={data.character.status}
-                />
-                <CharacterDetailCard
-                  title="Gender"
-                  content={data.character.gender}
-                />
-                <CharacterDetailCard
-                  title="Species"
-                  content={data.character.species}
-                />
-                <CharacterDetailCard
-                  title="Origin"
-                  content={data.character.origin.name}
-                />
-                <CharacterDetailCard
-                  title="Type"
-                  content={
-                    data.character.type === "" ? "Unkown" : data.character.type
-                  }
-                />
-                <CharacterDetailCard
-                  title="Location"
-                  content={data.character.location.name}
-                />
-              </div>
+              <div className="character-info">{characterDetailsArray}</div>
             </div>
           </div>
         </div>
