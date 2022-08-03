@@ -4,12 +4,18 @@ export interface ICharacter {
   name: string;
   id: number;
   gender: string;
-  spacies: string;
-  origin: string;
+  species: string;
+  origin: { name: string; __typename: string };
   type: string;
   image: string;
   location: string;
   episodes: object[];
+}
+export interface IEpisode {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
 }
 
 export interface ICharacterListProps {
@@ -52,6 +58,7 @@ export interface ISearchBarProps {
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
   searchValue: string;
   classValue: string;
+  onFocus: (focus: boolean) => void;
 }
 
 interface IDropdownItem {
