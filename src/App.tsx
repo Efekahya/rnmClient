@@ -3,8 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
 import Episode from "./pages/Episode";
+import Characters from "./pages/Characters";
 import CharacterDetails from "./pages/CharacterDetails";
 
 import { ReactComponent as Logo } from "./assets/digieggs.svg";
@@ -25,6 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/episodes" element={<Episode />} />
+            <Route path="/characters" element={<Characters />} />
             <Route path="/characters/:id" element={<CharacterDetails />} />
           </Routes>
         </BrowserRouter>
