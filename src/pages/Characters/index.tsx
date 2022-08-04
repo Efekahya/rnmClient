@@ -15,7 +15,6 @@ export default function Characters() {
   useEffect(() => {
     setTimeout(() => {
       const fetchMore = (i: number) => {
-        console.log("loading...");
         refetch({
           page: i++
         });
@@ -44,7 +43,6 @@ export default function Characters() {
 
   if (loading === false && data && info) {
     window.onscroll = e => {
-      console.log("scrolling");
       e.preventDefault();
       if (
         window.innerHeight + document.documentElement.scrollTop + 40 >
