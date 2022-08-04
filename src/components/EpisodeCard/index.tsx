@@ -21,8 +21,8 @@ export default function EpisodeCard({
           onClick={handleSetFavorited} //TODO Send request to database to favorite/unfavorite
         >
           <StarIcon
-            className={`episodeCard--inline ${
-              favorited ? "episodeCard-filled" : "episodeCard-empty"
+            className={`episodeCard--inline episodeCard-${
+              favorited ? "filled" : "empty"
             }`}
           />
         </button>
