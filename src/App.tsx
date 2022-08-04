@@ -14,6 +14,7 @@ import { ReactComponent as Logo } from "./assets/digieggs.svg";
 
 import "./styles.scss";
 import EpisodeCharacters from "./pages/EpisodeCharacters";
+import CharacterEpisodes from "./pages/CharacterEpisodes";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
@@ -36,6 +37,10 @@ function App() {
             />
             <Route path="/characters" element={<Characters />} />
             <Route path="/characters/:id" element={<CharacterDetails />} />
+            <Route
+              path="/characters/:id/episodes"
+              element={<CharacterEpisodes />}
+            />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>

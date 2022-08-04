@@ -19,25 +19,21 @@ export default function Dropdown({ items, selected }: IDropdownProps) {
   };
 
   return (
-    <div className="dropdown--container">
-      <button className="dropdown--dropdown" onClick={handleDropdown}>
+    <div className="dropdown-container">
+      <button className="dropdown-dropdown" onClick={handleDropdown}>
         {selected}
-        <Arrow
-          className={`dropdown--arrow ${isOpen ? "dropdown--down" : ""}`}
-        />
+        <Arrow className={`dropdown-arrow ${isOpen ? "dropdown-down" : ""}`} />
       </button>
-      <div className="dropdown--psuedo">
+      <div className="dropdown-psuedo">
         <div
-          className={`dropdown--itemsContainer ${
-            isOpen ? "dropdown--open" : ""
-          }`}
+          className={`dropdown-itemsContainer ${isOpen ? "dropdown-open" : ""}`}
         >
           {items.map(({ value, handleClick, label }) => (
-            <div className="dropdown--item">
+            <div className="dropdown-item">
               <button
                 key={value}
                 value={value}
-                className="dropdown--dropdown-item "
+                className="dropdown-dropdown-item "
                 onClick={event => click(event, handleClick)}
               >
                 {label}

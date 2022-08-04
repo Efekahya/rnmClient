@@ -142,3 +142,18 @@ export const NavbarSearch = gql`
     }
   }
 `;
+
+export const GetCharacterEpisodes = gql`
+  query GetCharacter($id: ID!) {
+    character(id: $id) {
+      image
+      name
+      episode {
+        id
+        name
+        air_date
+        episode
+      }
+    }
+  }
+`;
