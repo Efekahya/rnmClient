@@ -1,0 +1,126 @@
+.characterEpisodes-navigation-container {
+    width: 100%;
+    max-width: 1120px;
+}
+
+.characterEpisodes-navigation {
+    width: 100%;
+    padding: 16px;
+    padding-left: 0px;
+    align-self: flex-start;
+}
+
+.characterEpisodes-main-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.characterEpisodes-main-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    max-width: 1120px;
+}
+
+.characterName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.characterEpisodes-character-details {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 320px;
+}
+
+.characterEpisodes-character-name {
+    @include interText(700, 48px, 58px, $black);
+}
+
+.characterEpisodes-character-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-width: 1120px;
+    gap: 16px;
+}
+
+.characterEpisodes-character-container img {
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+}
+
+.characterEpisodes-episode-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 52px;
+    padding-top: 0px;
+    max-height: 920px;
+    max-width: 600px;
+    overflow: scroll;
+    width: 100%;
+    color: linear-gradient(180deg, #d72222 0%, rgba(255, 255, 255, 0) 62.62%)
+}
+
+
+.characterEpisodes-episode-item {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+//External styles
+
+.episodeCard--episodeContainer {
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .characterEpisodes-main-container {
+        flex-direction: column;
+    }
+
+    .characterEpisodes-main-container img {
+        max-width: 320px;
+    }
+
+    .characterEpisodes-episode-list {
+        padding: 16px;
+        box-sizing: border-box;
+        width: 100%;
+        align-items: center;
+    }
+
+    .characterEpisodes-episode-item {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    .dropdown-container {
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .dropdown-dropdown {
+        width: 100%;
+        height: 100%;
+    }
+
+    .characterEpisodes-character-details {
+        max-width: 100%;
+    }
+}
