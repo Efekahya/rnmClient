@@ -50,6 +50,7 @@ export interface ICharacterDetailCardProps {
 export type FilterCharacter = {
   name: string;
 };
+
 export interface INavbarProps {
   Logo: ReactElement;
 }
