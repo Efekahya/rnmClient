@@ -1,0 +1,40 @@
+.favorites-main-frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.favorites-main-container {
+    max-width: 1120px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.favorites-characters {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.favorites-episodes {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 auto;
+    gap: 24px;
+}
+
+// External styles
+
+.characterList--characterList {
+    width: 100%;
+}

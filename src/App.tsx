@@ -16,6 +16,7 @@ import "./styles.scss";
 import EpisodeCharacters from "./pages/EpisodeCharacters";
 import CharacterEpisodes from "./pages/CharacterEpisodes";
 import { FavoriteProvider } from "./context/favoriteContext";
+import Favorites from "./pages/Favorites";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
@@ -43,6 +44,7 @@ function App() {
                 path="/characters/:id/episodes"
                 element={<CharacterEpisodes />}
               />
+              <Route path="/favorites" element={<Favorites />} />
             </Routes>
           </BrowserRouter>
         </ApolloProvider>
