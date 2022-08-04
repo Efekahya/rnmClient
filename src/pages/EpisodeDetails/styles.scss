@@ -1,0 +1,288 @@
+.episode-detailsPage-main-frame {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.episode-detailsPage-main-container {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.episode-detailsPage-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(180deg, #202020 0%, #215229 100%);
+}
+
+.episode-detailsPage-container {
+    height: 100%;
+    width: 80%;
+    padding: 32px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    max-width: 1120px;
+}
+
+.episode-detailsPage-goBack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        @include interText(700, 16px, 19px, white)
+    }
+
+}
+
+.episode-detailsPage-selectEpisode {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    @include interText(700, 16px, 19px, white)
+}
+
+.arrow {
+    transform: rotate(180deg);
+
+    path {
+        stroke: white !important;
+    }
+}
+
+.arrow-right {
+
+    path {
+        stroke: white !important;
+    }
+}
+
+
+.episode-detailsPage-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+}
+
+.episode-detailsPage-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 24px;
+}
+
+.episode-detailsPage-date {
+    @include interText (400, 16px, 19px, white)
+}
+
+.episode-detailsPage-description {
+    @include interText (400, 20px, 24px, white);
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    max-height: 24*4px;
+
+}
+
+.episode-detailsPage-characters {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.episode-detailsPage-locations {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.showMore {
+    -webkit-text-fill-color: white;
+    max-height: max-content;
+}
+
+.episode-detailsPage-showMore button {
+    all: unset;
+
+    @include interText (400, 16px, 19px, $outline);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        background: transparent;
+    }
+}
+
+.episode-detailsPage-title-text {
+    @include interText(700, 48px, 58px, white)
+}
+
+.episode-detailsPage-episode-text {
+    background: $outline;
+    border-radius: 4px;
+    @include interText(700, 48px, 58px, black)
+}
+
+.location-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.location-frame {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 80%;
+    padding: 0;
+    margin: 0;
+    gap: 16px;
+    max-width: 1120px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    flex: 1 0 auto;
+}
+
+.location-container {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    background-color: $gray;
+    padding: 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+}
+
+.location-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    width: 100%
+}
+
+.location-type {
+    @include interText(700, 16px, 19px, $black );
+    padding: 8px;
+    border-radius: 4px;
+    background: $outline;
+
+}
+
+.location-name {
+    @include interText(700, 16px, 19px, $black)
+}
+
+.location-dimension {
+    @include interText(400, 16px, 19px, $darkgray)
+}
+
+@media (max-width: $breakpoint-lg) {
+    .location-frame {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: $breakpoint-md) {
+
+    .location-container {
+        width: calc(33.33% - 12px);
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+
+    .location-container {
+        width: calc(50% - 12px);
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .location-frame {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .location-container {
+        width: 100%;
+    }
+}
+
+//External Changes
+
+.counter--container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    padding: 16px;
+    margin: 0;
+    gap: 16px;
+    max-width: 1120px;
+    box-sizing: border-box;
+}
+
+.characterList--container {
+    margin: 0px;
+}

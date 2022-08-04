@@ -4,17 +4,19 @@
 
 @import "./components/Navbar/styles.scss";
 @import "./components/CharacterList/styles.scss";
+@import "./components/CharacterDetailCard/styles.scss";
 @import "./components/EpisodeCard/styles.scss";
 @import "./components/AddFavorites/styles.scss";
-@import "./components/CharacterDetailCard/styles.scss";
 @import "./components/ShowCount/styles.scss";
 @import "./components/Navigation/styles.scss";
 @import "./components/Dropdown/styles.scss";
-@import "./components/ShowCount/styles.scss";
 
+
+@import "./pages/Home/styles.scss";
+@import "./pages/Episodes/styles.scss";
+@import "./pages/EpisodeDetails/styles.scss";
 @import "./pages/Characters/styles.scss";
 @import "./pages/CharacterDetails/styles.scss";
-@import "./pages/Episode/styles.scss";
 
 body {
   margin: 0;

@@ -21,7 +21,16 @@
 .episodeCard--episodeContainer {
     width: 100%;
     box-sizing: border-box;
-    position: relative;
+
+    button {
+        all: unset;
+        cursor: pointer;
+        border-radius: 8px;
+
+        &:active {
+            background: #E7F3E9 !important;
+        }
+    }
 }
 
 .episodeCard--header {
@@ -71,6 +80,7 @@
     gap: 8px;
 }
 
+
 button {
     all: unset;
     cursor: pointer;
@@ -80,6 +90,7 @@ button {
         background: #E7F3E9 !important;
     }
 }
+
 
 .episodeCard--psuedo {
     position: absolute;

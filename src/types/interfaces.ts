@@ -5,11 +5,18 @@ export interface ICharacter {
   id: number;
   gender: string;
   species: string;
-  origin: { name: string; __typename: string };
+  origin: ILocation;
   type: string;
+  image: string;
+  location: ILocation;
+  episodes: object[];
+}
+
+export interface ILocation {
+  name: string;
   dimension: string;
   residents: [ICharacter];
-  created: string;
+  type: string;
 }
 
 export interface ICharacterListProps {

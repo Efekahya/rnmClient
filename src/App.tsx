@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Episode from "./pages/Episode";
+import EpisodeDetails from "./pages/EpisodeDetails";
 import Characters from "./pages/Characters";
 import CharacterDetails from "./pages/CharacterDetails";
 
@@ -27,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/episodes" element={<Episode />} />
+            <Route path="/episodes/:id" element={<EpisodeDetails />} />
             <Route path="/characters" element={<Characters />} />
             <Route path="/characters/:id" element={<CharacterDetails />} />
           </Routes>
