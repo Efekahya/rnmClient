@@ -88,21 +88,6 @@ export default function Navbar({ Logo }: INavbarProps) {
         );
         return prevState;
       });
-
-      //     data.episodes.results.map(({ name }: ICharacter) =>
-      //       setSearchResultsNames(prevState => [
-      //         ...prevState,
-      //         <button
-      //           className="navbar-dropdown-item"
-      //           onClick={() => {
-      //             setSearchValue(name);
-      //             setSearchResultsNames([]);
-      //           }}
-      //         >
-      //           {name}
-      //         </button>
-      //       ])
-      //     );
     }
   }, [loading, data]);
 
@@ -138,13 +123,11 @@ export default function Navbar({ Logo }: INavbarProps) {
 
   if (loading === false && data) {
     window.onscroll = e => {
-      console.log("scrolling");
       e.preventDefault();
       if (
         window.innerHeight + document.documentElement.scrollTop + 40 >
         document.documentElement.offsetHeight
       ) {
-        console.log("bottom");
         search({
           variables: {
             filterCharacter: {
