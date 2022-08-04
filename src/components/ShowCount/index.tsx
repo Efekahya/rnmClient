@@ -3,16 +3,20 @@ import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 
 export default function ShowCount({
   title,
-  count
+  count,
+  href
 }: {
   title: string;
   count: number;
+  href: string;
 }) {
   return (
-    <div className="counter--container">
-      <div className="counter--title">{title}</div>
-      <div className="counter--count">{count}</div>
-      <Arrow className="counter--arrow" />
-    </div>
+    <a className="counter--link" href={href}>
+      <div className="counter--container">
+        <div className="counter--title">{title}</div>
+        <div className="counter--count">{count}</div>
+        <Arrow className="counter--arrow" />
+      </div>
+    </a>
   );
 }
