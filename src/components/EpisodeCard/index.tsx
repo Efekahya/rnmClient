@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as StarIcon } from "../../assets/star.svg";
 import { IEpisodeCardProps } from "../../types/interfaces";
@@ -26,7 +27,7 @@ export default function EpisodeCard({
           />
         </button>
       </div>
-      <a href={`/episodes/${id}`} className="episodeCard--card">
+      <Link to={`/episodes/${id}`} className="episodeCard--card">
         <div className="episodeCard--header">
           <div className="episodeCard--info">
             <div className="episodeCard--episode title">{episode}</div>
@@ -37,7 +38,7 @@ export default function EpisodeCard({
           <div className="episodeCard--title">{title}</div>
           <div className="episodeCard--secondaryText">{description}</div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

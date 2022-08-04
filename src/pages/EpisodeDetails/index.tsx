@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import { GetEpisode } from "../../queries/queries";
@@ -7,6 +8,7 @@ import AddFavorites from "../../components/AddFavorites";
 import CharacterList from "../../components/CharacterList";
 import ShowCount from "../../components/ShowCount";
 import { ICharacter, ILocation } from "../../types/interfaces";
+import { FavoriteContext } from "../../context/favoriteContext";
 const id = window.location.href.split("/")[4];
 
 export default function EpisodeDetails() {
@@ -15,6 +17,8 @@ export default function EpisodeDetails() {
     []
   );
   const [showMore, setShowMore] = React.useState(false);
+
+  const favoritedItems = useContext(FavoriteContext);
 
   const { loading, error, data } = useQuery(GetEpisode, {
     variables: {
@@ -73,19 +77,19 @@ export default function EpisodeDetails() {
       <div className="episode-detailsPage-frame">
         <div className="episode-detailsPage-container">
           <div className="episode-detailsPage-goBack">
-            <a href="/episodes">
+            <Link to="/episodes">
               <Arrow className="arrow" />
               Episode List
-            </a>
+            </Link>
           </div>
           <div className="episode-detailsPage-selectEpisode">
-            <a href={`/episodes/${data.episode.id - 1}`}>
+            <Link to={`/episodes/${data.episode.id - 1}`}>
               <Arrow className="arrow" />
-            </a>
+            </Link>
             {data.episode.episode}
-            <a href={`/episodes/${parseInt(data.episode.id) + 1}`}>
+            <Link to={`/episodes/${parseInt(data.episode.id) + 1}`}>
               <Arrow className="arrow-right" />
-            </a>
+            </Link>
           </div>
           <div className="episode-detailsPage-header">
             <div className="episode-detailsPage-info">
@@ -103,7 +107,21 @@ export default function EpisodeDetails() {
                 <AddFavorites
                   themeClass="black transparent"
                   favorited={false}
-                  toggleFavorite={() => console.log("here")}
+                  toggleFavorite={() => {
+                    if (
+                      favoritedItems.favoriteEpisodes.includes(
+                        parseInt(id.toString())
+                      )
+                    ) {
+                      favoritedItems.removeFavoriteEpisode(
+                        parseInt(id.toString())
+                      );
+                    } else {
+                      favoritedItems.addFavoriteEpisode(
+                        parseInt(id.toString())
+                      );
+                    }
+                  }}
                 />
               </div>
             </div>

@@ -16,7 +16,7 @@ export interface ICharacter {
   type: string;
   image: string;
   location: ILocation;
-  episodes: object[];
+  episode: IEpisode[];
 }
 
 export interface ILocation {

@@ -1,8 +1,13 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useContext, useEffect } from "react";
+import { useLazyQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import { GetCharacter } from "../../queries/queries";
-import { IEpisode } from "../../types/interfaces";
+import {
+  ICharacter,
+  ICharacterDetailCardProps,
+  IEpisode
+} from "../../types/interfaces";
 
 import AddFavorites from "../../components/AddFavorites";
 import CharacterDetailCard from "../../components/CharacterDetailCard";
@@ -11,61 +16,111 @@ import ShowCount from "../../components/ShowCount";
 
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { FavoriteContext } from "../../context/favoriteContext";
 
-const id = window.location.pathname.split("/")[2];
-
+console.log(window.location.href);
 export default function CharacterDetails() {
-  const { loading, error, data } = useQuery(GetCharacter, {
-    variables: {
-      id
-    }
-  });
+  const favoritedItems = useContext(FavoriteContext);
+  const [getCharacter, { loading, error, data }] = useLazyQuery(GetCharacter);
+  const [episodes, setEpisodes] = React.useState<JSX.Element[]>([]);
+  const [characterDetails, setCharacterDetails] = React.useState<
+    ICharacterDetailCardProps[]
+  >([]);
+  const [character, setCharacter] = React.useState<ICharacter>();
+  const [characterDetailsArray, setCharacterDetailsArray] =
+    React.useState<JSX.Element[]>();
+  const [id, setId] = React.useState<string>("");
 
+  useEffect(() => {
+    if (loading === false && data) {
+      setEpisodes(prevState => {
+        prevState = data.character.episode.map(
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          ({ id, air_date, episode, name }: IEpisode, index: number) => {
+            if (index < 3) {
+              return (
+                <div className="character-episode-item">
+                  <EpisodeCard
+                    id={id}
+                    date={air_date}
+                    title={name}
+                    episode={episode}
+                    description={"lorem ipsum"}
+                    favorited={favoritedItems.favoriteEpisodes.includes(
+                      parseInt(id.toString())
+                    )}
+                    handleSetFavorited={() => {
+                      if (
+                        favoritedItems.favoriteEpisodes.includes(
+                          parseInt(id.toString())
+                        )
+                      ) {
+                        favoritedItems.removeFavoriteEpisode(
+                          parseInt(id.toString())
+                        );
+                      } else {
+                        favoritedItems.addFavoriteEpisode(
+                          parseInt(id.toString())
+                        );
+                      }
+                    }}
+                  />
+                </div>
+              );
+            }
+          }
+        );
+        return prevState;
+      });
+    }
+  }, [data, favoritedItems, loading]);
+
+  useEffect(() => {
+    setId(prevState => {
+      prevState = window.location.href.split("/")[4];
+      return prevState;
+    });
+    getCharacter({ variables: { id: window.location.href.split("/")[4] } });
+  }, []);
+
+  useEffect(() => {
+    if (loading === false && data) {
+      setCharacterDetails(prevState => {
+        prevState = [
+          { title: "Status", content: data.character.status },
+          { title: "Gender", content: data.character.gender },
+          { title: "Species", content: data.character.species },
+          { title: "Origin", content: data.character.origin.name },
+          {
+            title: "Type",
+            content:
+              data.character.type === "" ? "Unknown" : data.character.type
+          },
+          { title: "Location", content: data.character.location.name }
+        ];
+        return prevState;
+      });
+      setCharacter(prevState => {
+        prevState = data.character;
+        return prevState;
+      });
+    }
+  }, [data, loading]);
+
+  useEffect(() => {
+    if (characterDetails?.length > 0) {
+      setCharacterDetailsArray(prevState => {
+        prevState = characterDetails.map(
+          ({ title, content }: { title: string; content: string }) => {
+            return <CharacterDetailCard title={title} content={content} />;
+          }
+        );
+        return prevState;
+      });
+    }
+  }, [characterDetails]);
   if (loading) return <LoadingSpinner />;
   if (error) return <p>Error :(</p>;
-
-  const episodes = data.character.episode.map(
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    ({ id, air_date, episode, name }: IEpisode, index: number) => {
-      if (index < 3) {
-        return (
-          <div className="character-episode-item">
-            <EpisodeCard
-              key={id}
-              id={id}
-              date={air_date}
-              episode={episode}
-              title={name}
-              description="Lorem ipsum"
-              favorited={false}
-              handleSetFavorited={() => {
-                console.log("favorited");
-              }}
-            />
-          </div>
-        );
-      }
-    }
-  );
-
-  const characterDetails = [
-    { title: "Status", value: data.character.status },
-    { title: "Gender", value: data.character.gender },
-    { title: "Species", value: data.character.species },
-    { title: "Origin", value: data.character.origin.name },
-    {
-      title: "Type",
-      value: data.character.type === "" ? "Unknown" : data.character.type
-    },
-    { title: "Location", value: data.character.location.name }
-  ];
-
-  const characterDetailsArray = characterDetails.map(
-    ({ title, value }: { title: string; value: string }) => {
-      return <CharacterDetailCard title={title} content={value} />;
-    }
-  );
-
   return (
     <>
       <div className="character-container">
@@ -73,12 +128,26 @@ export default function CharacterDetails() {
           <div className="character-details">
             <div className="character-name-container">
               <div className="character-name">
-                <div className="character-name-text">{data.character.name}</div>
+                <div className="character-name-text">{character?.name}</div>
                 <AddFavorites
-                  favorited={false}
+                  favorited={favoritedItems.favoriteCharacters.includes(
+                    parseInt(id.toString())
+                  )}
                   themeClass={"black transparent"}
                   toggleFavorite={() => {
-                    console.log("here");
+                    if (
+                      favoritedItems.favoriteCharacters.includes(
+                        parseInt(id.toString())
+                      )
+                    ) {
+                      favoritedItems.removeFavoriteCharacter(
+                        parseInt(id.toString())
+                      );
+                    } else {
+                      favoritedItems.addFavoriteCharacter(
+                        parseInt(id.toString())
+                      );
+                    }
                   }}
                 />
               </div>
@@ -86,8 +155,8 @@ export default function CharacterDetails() {
             <div className="character-info-container">
               <div className="character-image">
                 <img
-                  src={data.character.image}
-                  alt={data.character.name}
+                  src={character?.image}
+                  alt={character?.name}
                   className="character-image"
                 />
               </div>
@@ -101,15 +170,15 @@ export default function CharacterDetails() {
           <div className="character-episode">
             <ShowCount
               title="Episodes"
-              count={data.character.episode.length}
+              count={character?.episode.length || 0}
               href={`/characters/${id}/episodes`}
             />
             <div className="character-episode-items-container">
               <div className="character-episode-showmore-psuedo">
                 <div className="character-episode-showmore">
-                  <a href={`/characters/${id}/episodes`}>
+                  <Link to={`/characters/${id}/episodes`}>
                     <Arrow />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="character-episode-items">{episodes}</div>

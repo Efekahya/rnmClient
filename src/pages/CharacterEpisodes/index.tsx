@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
 import EpisodeCard from "../../components/EpisodeCard";
@@ -7,6 +7,7 @@ import Navigation from "../../components/Navigation";
 import { GetCharacterEpisodes } from "../../queries/queries";
 import { IEpisode } from "../../types/interfaces";
 import Dropdown from "../../components/Dropdown";
+import { FavoriteContext } from "../../context/favoriteContext";
 
 const id = window.location.pathname.split("/")[2];
 
@@ -15,6 +16,9 @@ export default function CharacterEpisodes() {
   const [episodes, setEpisodes] = React.useState<JSX.Element[]>([]);
   const [seasons, setSeasons] = React.useState<IEpisode[]>([]);
   const [selected, setSelected] = React.useState<string>("All Seasons");
+
+  const favoritedItems = useContext(FavoriteContext);
+
   const { loading, error, data } = useQuery(GetCharacterEpisodes, {
     variables: {
       id: id
@@ -31,14 +35,27 @@ export default function CharacterEpisodes() {
               <div className="characterEpisodes-episode-item">
                 <EpisodeCard
                   id={id}
-                  key={id}
                   date={air_date}
-                  episode={episode}
                   title={name}
-                  description="Lorem ipsum"
-                  favorited={false}
+                  episode={episode}
+                  description={"lorem ipsum"}
+                  favorited={favoritedItems.favoriteEpisodes.includes(
+                    parseInt(id.toString())
+                  )}
                   handleSetFavorited={() => {
-                    console.log("favorited");
+                    if (
+                      favoritedItems.favoriteEpisodes.includes(
+                        parseInt(id.toString())
+                      )
+                    ) {
+                      favoritedItems.removeFavoriteEpisode(
+                        parseInt(id.toString())
+                      );
+                    } else {
+                      favoritedItems.addFavoriteEpisode(
+                        parseInt(id.toString())
+                      );
+                    }
                   }}
                 />
               </div>

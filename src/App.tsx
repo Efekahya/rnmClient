@@ -15,6 +15,7 @@ import { ReactComponent as Logo } from "./assets/digieggs.svg";
 import "./styles.scss";
 import EpisodeCharacters from "./pages/EpisodeCharacters";
 import CharacterEpisodes from "./pages/CharacterEpisodes";
+import { FavoriteProvider } from "./context/favoriteContext";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
@@ -24,26 +25,28 @@ const client = new ApolloClient({
 function App() {
   return (
     <>
-      <ApolloProvider client={client}>
-        <Navbar Logo={<Logo />} />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/episodes" element={<Episode />} />
-            <Route path="/episodes/:id" element={<EpisodeDetails />} />
-            <Route
-              path="/episodes/:id/characters"
-              element={<EpisodeCharacters />}
-            />
-            <Route path="/characters" element={<Characters />} />
-            <Route path="/characters/:id" element={<CharacterDetails />} />
-            <Route
-              path="/characters/:id/episodes"
-              element={<CharacterEpisodes />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </ApolloProvider>
+      <FavoriteProvider>
+        <ApolloProvider client={client}>
+          <BrowserRouter>
+            <Navbar Logo={<Logo />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/episodes" element={<Episode />} />
+              <Route path="/episodes/:id" element={<EpisodeDetails />} />
+              <Route
+                path="/episodes/:id/characters"
+                element={<EpisodeCharacters />}
+              />
+              <Route path="/characters" element={<Characters />} />
+              <Route path="/characters/:id" element={<CharacterDetails />} />
+              <Route
+                path="/characters/:id/episodes"
+                element={<CharacterEpisodes />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </ApolloProvider>
+      </FavoriteProvider>
     </>
   );
 }

@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import SearchBar from "./_searchBar";
 
@@ -9,6 +10,7 @@ import { NavbarSearch } from "../../queries/queries";
 import CharacterList from "../CharacterList";
 import EpisodeCard from "../EpisodeCard";
 import ShowCount from "../ShowCount";
+import { FavoriteContext } from "../../context/favoriteContext";
 
 export default function Navbar({ Logo }: INavbarProps) {
   const [searchValue, setSearchValue] = React.useState("");
@@ -20,6 +22,8 @@ export default function Navbar({ Logo }: INavbarProps) {
   const [searchResultsNames, setSearchResultsNames] = React.useState<
     JSX.Element[]
   >([]);
+
+  const favoritedItems = useContext(FavoriteContext);
 
   const handleSearch = (e: string) => {
     setSearchValue(e);
@@ -97,14 +101,29 @@ export default function Navbar({ Logo }: INavbarProps) {
               <>
                 <div className="navbar-episodes-item">
                   <EpisodeCard
-                    key={id}
                     id={id}
-                    title={name}
                     date={air_date}
+                    title={name}
                     episode={episode}
-                    description="lorem ipsum"
-                    favorited={false}
-                    handleSetFavorited={() => console.log("here")}
+                    description={"lorem ipsum"}
+                    favorited={favoritedItems.favoriteEpisodes.includes(
+                      parseInt(id.toString())
+                    )}
+                    handleSetFavorited={() => {
+                      if (
+                        favoritedItems.favoriteEpisodes.includes(
+                          parseInt(id.toString())
+                        )
+                      ) {
+                        favoritedItems.removeFavoriteEpisode(
+                          parseInt(id.toString())
+                        );
+                      } else {
+                        favoritedItems.addFavoriteEpisode(
+                          parseInt(id.toString())
+                        );
+                      }
+                    }}
                   />
                 </div>
               </>
@@ -143,9 +162,9 @@ export default function Navbar({ Logo }: INavbarProps) {
     <>
       <nav className="navbar--navbar">
         <div className="navbar--wrapper">
-          <a href="/" className="navbar--brand">
+          <Link to="/" className="navbar--brand">
             {Logo}
-          </a>
+          </Link>
           <SearchBar
             handleSearch={e => debounceFn(e.target.value)}
             searchValue={searchValue}
