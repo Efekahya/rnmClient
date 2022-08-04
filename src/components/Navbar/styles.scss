@@ -1,3 +1,20 @@
+.homepage-main-frame {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.homepage-main-container {
+  max-width: 1120px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .navbar--navbar {
   background-color: $gray;
   padding: 0;
@@ -10,15 +27,17 @@
 
 .navbar--wrapper {
   width: 100%;
-  max-width: 1162px;
+  max-width: 1120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   flex-direction: row;
   background: $gray;
   gap: 36px;
+  box-sizing: border-box;
 }
 
 .navbar--searchInput {
@@ -85,6 +104,7 @@
   margin: 0px;
   @include interText(700, 14px, 17px, $darkgray);
   gap: 6px;
+  stroke: $darkgray;
 }
 
 @media (max-width: $breakpoint-md) {

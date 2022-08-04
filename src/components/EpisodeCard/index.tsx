@@ -20,11 +20,11 @@ export default function EpisodeCard({
           className="episodeCard--favoriteButton"
           onClick={handleSetFavorited} //TODO Send request to database to favorite/unfavorite
         >
-          {favorited ? (
-            <StarFilledIcon className="episodeCard--inline" />
-          ) : (
-            <StarIcon className="episodeCard--inline" />
-          )}
+          <StarIcon
+            className={`episodeCard--inline ${
+              favorited ? "episodeCard-filled" : "episodeCard-empty"
+            }`}
+          />
         </button>
       </div>
       <button className="episodeCard--card">
