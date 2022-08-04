@@ -6,9 +6,7 @@ import { GetCharacters, GetEpisodes } from "../../queries/queries";
 import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 import EpisodeCard from "../../components/EpisodeCard";
-import Navbar from "../../components/Navbar";
 
-import { ReactComponent as Logo } from "../../assets/digieggs.svg";
 import "./styles.scss";
 
 export default function Home() {
@@ -47,6 +45,7 @@ export default function Home() {
         return (
           <div className="homepage-item" key={id}>
             <EpisodeCard
+              id={id}
               date={air_date}
               title={name}
               episode={episode}
@@ -68,7 +67,6 @@ export default function Home() {
   return (
     <>
       <div className="homepage-main-frame">
-        <Navbar Logo={<Logo />} />
         <div className="homepage-main-container">
           <ShowCount
             count={characters.data.characters.info.count}

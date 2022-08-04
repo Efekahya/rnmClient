@@ -1,4 +1,7 @@
 .episodeCard--card {
+    all: unset;
+    border-radius: 8px;
+    cursor: pointer;
     background: $gray;
     display: flex;
     flex-direction: column;

@@ -1,11 +1,10 @@
 import React from "react";
 
 import { ReactComponent as StarIcon } from "../../assets/star.svg";
-import { ReactComponent as StarFilledIcon } from "../../assets/starFilled.svg";
-
 import { IEpisodeCardProps } from "../../types/interfaces";
 
 export default function EpisodeCard({
+  id,
   episode,
   date,
   title,
@@ -27,7 +26,7 @@ export default function EpisodeCard({
           />
         </button>
       </div>
-      <button className="episodeCard--card">
+      <a href={`/episodes/${id}`} className="episodeCard--card">
         <div className="episodeCard--header">
           <div className="episodeCard--info">
             <div className="episodeCard--episode title">{episode}</div>
@@ -38,7 +37,7 @@ export default function EpisodeCard({
           <div className="episodeCard--title">{title}</div>
           <div className="episodeCard--secondaryText">{description}</div>
         </div>
-      </button>
+      </a>
     </div>
   );
 }

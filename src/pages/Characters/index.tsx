@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import "./styles.scss";
 import { useQuery } from "@apollo/client";
 import { GetCharacters } from "../../queries/queries";
@@ -33,10 +33,13 @@ export default function Characters() {
 
   useEffect(() => {
     if (loading === false && data) {
-      setCharacters([...characters, ...data.characters.results]);
+      setCharacters(prevState => {
+        prevState = [...characters, ...data.characters.results];
+        return prevState;
+      });
       setInfo(data.characters.info);
     }
-  }, [loading, data]);
+  }, [loading, data, characters]);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <p>Error :(</p>;

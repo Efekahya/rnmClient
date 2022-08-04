@@ -32,6 +32,7 @@ export default function CharacterDetails() {
           <div className="character-episode-item">
             <EpisodeCard
               key={id}
+              id={id}
               date={air_date}
               episode={episode}
               title={name}

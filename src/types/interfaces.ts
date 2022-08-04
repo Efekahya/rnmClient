@@ -14,15 +14,6 @@ export interface ICharacter {
   created: string;
 }
 
-export interface IEpisode {
-  id: number;
-  name: string;
-  air_date: string;
-  episode: string;
-  characters: [ICharacter];
-  created: string;
-}
-
 export interface IInfo {
   count: number;
   pages: number;
@@ -54,6 +45,7 @@ export interface IEpisode {
 }
 
 export interface IEpisodeCardProps {
+  id: number;
   episode: string;
   date: string;
   title: string;

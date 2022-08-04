@@ -33,6 +33,7 @@ export default function Episode() {
                 <div className="episodes-page-item">
                   <EpisodeCard
                     key={id}
+                    id={id}
                     title={name}
                     date={air_date}
                     episode={episode}
