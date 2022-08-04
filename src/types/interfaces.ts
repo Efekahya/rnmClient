@@ -1,29 +1,11 @@
 import { ReactElement } from "react";
 
 export interface ICharacter {
-  id: number;
   name: string;
-  status: string;
-  species: string;
-  type: string;
+  id: number;
   gender: string;
-  origin: ILocation;
-  location: ILocation;
-  image: string;
-  episode: [IEpisode];
-  created: string;
-}
-
-export interface IInfo {
-  count: number;
-  pages: number;
-  next: number;
-  prev: number;
-}
-
-export interface ILocation {
-  id: number;
-  name: string;
+  species: string;
+  origin: { name: string; __typename: string };
   type: string;
   dimension: string;
   residents: [ICharacter];
@@ -81,6 +63,7 @@ export interface ISearchBarProps {
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
   searchValue: string;
   classValue: string;
+  onFocus: (focus: boolean) => void;
 }
 
 interface IDropdownItem {
