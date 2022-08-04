@@ -74,7 +74,11 @@ export default function Episode() {
     <div>
       <div className="episodes-page-showcount-container">
         <div className="episodes-page-showcount">
-          <ShowCount count={data.episodes.info.count} title="Episodes" />
+          <ShowCount
+            count={data.episodes.info.count}
+            title="Episodes"
+            href="#"
+          />
         </div>
       </div>
       <div className="episodes-page-container">

@@ -17,6 +17,30 @@ export const GetEpisodes = gql`
     }
   }
 `;
+export const GetEpisode = gql`
+  query GetEpisode($id: ID!) {
+    episode(id: $id) {
+      id
+      name
+      air_date
+      episode
+      characters {
+        id
+        name
+        image
+        origin {
+          name
+        }
+        species
+        location {
+          name
+          dimension
+          type
+        }
+      }
+    }
+  }
+`;
 
 export const GetCharacters = gql`
   query GetCharacters($page: Int) {

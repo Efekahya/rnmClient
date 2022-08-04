@@ -99,11 +99,15 @@ export default function CharacterDetails() {
       <div className="character-episode-frame">
         <div className="character-episode-container">
           <div className="character-episode">
-            <ShowCount title="Episodes" count={data.character.episode.length} />
+            <ShowCount
+              title="Episodes"
+              count={data.character.episode.length}
+              href={`/characters/${id}/episodes`}
+            />
             <div className="character-episode-items-container">
               <div className="character-episode-showmore-psuedo">
                 <div className="character-episode-showmore">
-                  <a href="/episodes">
+                  <a href={`/characters/${id}/episodes`}>
                     <Arrow />
                   </a>
                 </div>

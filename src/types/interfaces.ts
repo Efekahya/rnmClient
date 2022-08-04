@@ -1,5 +1,12 @@
 import { ReactElement } from "react";
 
+export interface IInfo {
+  count: number;
+  pages: number;
+  next: string;
+  prev: string;
+}
+
 export interface ICharacter {
   name: string;
   id: number;
@@ -57,10 +64,6 @@ export interface ICharacterDetailCardProps {
   title: string;
   content: string;
 }
-
-export type FilterCharacter = {
-  name: string;
-};
 
 export interface INavbarProps {
   Logo: ReactElement;

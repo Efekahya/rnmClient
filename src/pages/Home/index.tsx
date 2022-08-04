@@ -71,6 +71,7 @@ export default function Home() {
           <ShowCount
             count={characters.data.characters.info.count}
             title="Characters"
+            href="/characters"
           />
           <CharacterList
             characters={characters.data.characters.results}
@@ -79,6 +80,7 @@ export default function Home() {
           <ShowCount
             count={episodes.data.episodes.info.count}
             title="Episodes"
+            href="/episodes"
           />
           <div className="homepage-container">
             <div className="homepage-items">{episodesArray}</div>

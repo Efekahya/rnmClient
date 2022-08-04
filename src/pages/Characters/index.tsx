@@ -65,7 +65,11 @@ export default function Characters() {
     <>
       <div className="characters-page-frame">
         <div className="characters-page-container">
-          <ShowCount count={data.characters.info.count} title="Characters" />
+          <ShowCount
+            count={data.characters.info.count}
+            title="Characters"
+            href="#"
+          />
           <CharacterList characters={characters} count={-1} />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
-import Episode from "./pages/Episode";
+import Episode from "./pages/Episodes";
 import EpisodeDetails from "./pages/EpisodeDetails";
 import Characters from "./pages/Characters";
 import CharacterDetails from "./pages/CharacterDetails";

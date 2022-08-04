@@ -4,12 +4,7 @@ import { useLazyQuery } from "@apollo/client";
 import SearchBar from "./_searchBar";
 
 import { ReactComponent as StarIcon } from "../../assets/star.svg";
-import {
-  FilterCharacter,
-  ICharacter,
-  INavbarProps,
-  IEpisode
-} from "../../types/interfaces";
+import { ICharacter, INavbarProps, IEpisode } from "../../types/interfaces";
 import { NavbarSearch } from "../../queries/queries";
 import CharacterList from "../CharacterList";
 import EpisodeCard from "../EpisodeCard";
@@ -103,6 +98,7 @@ export default function Navbar({ Logo }: INavbarProps) {
                 <div className="navbar-episodes-item">
                   <EpisodeCard
                     key={id}
+                    id={id}
                     title={name}
                     date={air_date}
                     episode={episode}
@@ -198,7 +194,11 @@ export default function Navbar({ Logo }: INavbarProps) {
             <div className="navbar-searchResult">
               <div className="navbar-count">
                 <div className="navbar-search-header">Search Results</div>
-                <ShowCount count={characters.length} title="Characters" />
+                <ShowCount
+                  count={characters.length}
+                  title="Characters"
+                  href="#"
+                />
               </div>
               <CharacterList characters={characters} count={-1} />
             </div>
@@ -209,7 +209,7 @@ export default function Navbar({ Logo }: INavbarProps) {
           <div className="navbar-searchResult">
             <div className="navbar-count">
               <div className="navbar-search-header">Search Results</div>
-              <ShowCount count={episodes.length} title="Episodes" />
+              <ShowCount count={episodes.length} title="Episodes" href="#" />
             </div>
             <div className="navbar-search-episodes">{episodeArray}</div>
           </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
@@ -10,6 +10,10 @@ import { ICharacter, ILocation } from "../../types/interfaces";
 const id = window.location.href.split("/")[4];
 
 export default function EpisodeDetails() {
+  const [locationsArray, setLocationsArray] = React.useState<ILocation[]>([]);
+  const [uniqueLocations, setUniqueLocations] = React.useState<JSX.Element[]>(
+    []
+  );
   const [showMore, setShowMore] = React.useState(false);
 
   const { loading, error, data } = useQuery(GetEpisode, {
@@ -17,38 +21,52 @@ export default function EpisodeDetails() {
       id: id
     }
   });
+  useEffect(() => {
+    if (loading === false && data) {
+      setLocationsArray(prevState => {
+        prevState = data.episode.characters.map((element: ICharacter) => {
+          return {
+            name: element.location.name,
+            dimension: element.location.dimension,
+            type: element.location.type
+          };
+        });
+        return prevState;
+      });
+    }
+  }, [loading, data]);
+
+  useEffect(() => {
+    if (loading === false && data) {
+      setUniqueLocations(prevState => {
+        prevState = Array.from(
+          new Map<string, ILocation>(
+            locationsArray.map((x: ILocation) => [x["name"], x])
+          ).values()
+        )
+          .filter(x => {
+            return x.name !== "unknown";
+          })
+          .map(({ name, type, dimension }) => {
+            return (
+              <>
+                <div className="location-container">
+                  <div className="location-title">
+                    <div className="location-name">{name}</div>
+                    <div className="location-type">{type}</div>
+                  </div>
+                  <div className="location-dimension">{dimension}</div>
+                </div>
+              </>
+            );
+          });
+        return prevState;
+      });
+    }
+  }, [loading, data, locationsArray]);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-
-  const locationsArray = data.episode.characters.map((element: ICharacter) => {
-    return {
-      name: element.location.name,
-      dimension: element.location.dimension,
-      type: element.location.type
-    };
-  });
-
-  const uniqueLocations = Array.from(
-    new Map<ILocation, ILocation>(
-      locationsArray.map((x: ILocation) => [x["name"], x])
-    ).values()
-  )
-    .filter(x => {
-      return x.name !== "unknown";
-    })
-    .map(({ name, type, dimension }) => {
-      return (
-        <>
-          <div className="location-container">
-            <div className="location-title">
-              <div className="location-name">{name}</div>
-              <div className="location-type">{type}</div>
-            </div>
-            <div className="location-dimension">{dimension}</div>
-          </div>
-        </>
-      );
-    });
 
   return (
     <div>
@@ -121,11 +139,15 @@ export default function EpisodeDetails() {
         </div>
       </div>
       <div className="episode-detailsPage-characters">
-        <ShowCount count={data.episode.characters.length} title="Characters" />
+        <ShowCount
+          count={data.episode.characters.length}
+          title="Characters"
+          href={`/episode/${id}/characters`}
+        />
         <CharacterList characters={data.episode.characters} count={4} />
       </div>
       <div className="episode-detailsPage-locations">
-        <ShowCount count={uniqueLocations.length} title="Locations" />
+        <ShowCount count={uniqueLocations.length} title="Locations" href="#" />
         <div className="location-items">
           <div className="location-frame">{uniqueLocations}</div>
         </div>
