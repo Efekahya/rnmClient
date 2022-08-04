@@ -1,0 +1,213 @@
+.character-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.character-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    margin: 16px;
+}
+
+.character-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.character-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    align-self: flex-start;
+}
+
+.character-name {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    width: 100%;
+}
+
+.character-name-text {
+    @include interText(700, 48px, 58px, white);
+
+}
+
+.character-container {
+    background: linear-gradient(180deg, #202020 0%, #215229 100%);
+}
+
+.character-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.character-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 760px;
+    gap: 24px;
+    flex: 1 0 auto;
+}
+
+.character-image {
+    border-radius: 8px;
+}
+
+.character-episode-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.character-episode-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 32px);
+    height: 100%;
+    margin: 0;
+    max-width: 1124px;
+    position: relative;
+}
+
+.character-episode {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.character-episode-items-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.character-episode-items {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    flex-wrap: wrap;
+    max-height: 150px;
+    gap: 24px;
+}
+
+.character-episode-item {
+    width: calc(33.33% - 16px);
+}
+
+.character-episode-showmore {
+    all: unset;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #EBEBEB;
+    width: 40px;
+    height: 40px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    left: calc(100% - 20px);
+    z-index: 1;
+
+    &:hover {
+        background-color: #DEDEDE;
+    }
+
+    a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+}
+
+.character-episode-showmore-psuedo {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    width: 100%;
+}
+
+@media (max-width: $breakpoint-md) {
+    .character-info-container {
+        flex-direction: column;
+    }
+
+    .character-episode-items {
+        flex-wrap: wrap;
+        overflow: hidden;
+    }
+
+    .character-episode-item {
+        width: calc(50% - 16px);
+    }
+
+    .character-name {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+    .characterDetailCard--container {
+        width: 50%;
+    }
+
+}
+
+@media (max-width: $breakpoint-sm) {
+    .character-episode-item {
+        width: 100%;
+    }
+
+    .character-episode-showmore-psuedo {
+        display: none;
+    }
+}
+
+.counter--container {
+    padding: 16px 0px 16px 0px;
+}

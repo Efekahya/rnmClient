@@ -18,6 +18,7 @@
 .episodeCard--episodeContainer {
     width: 100%;
     box-sizing: border-box;
+    position: relative;
 }
 
 .episodeCard--header {
@@ -92,4 +93,13 @@ button {
 
 .episodeCard--inline {
     display: inline;
+}
+
+.episodeCard-filled {
+    stroke: $black;
+    fill: $black;
+}
+
+.episodeCard-empty {
+    stroke: $darkgray;
 }

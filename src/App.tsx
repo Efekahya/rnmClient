@@ -5,6 +5,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Episode from "./pages/Episode";
+import CharacterDetails from "./pages/CharacterDetails";
 
 import { ReactComponent as Logo } from "./assets/digieggs.svg";
 
@@ -18,13 +19,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <>
-      <Navbar Logo={<Logo />} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/episodes" element={<Episode />} />
-        </Routes>
-      </BrowserRouter>
+      <ApolloProvider client={client}>
+        <Navbar Logo={<Logo />} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/episodes" element={<Episode />} />
+            <Route path="/characters/:id" element={<CharacterDetails />} />
+          </Routes>
+        </BrowserRouter>
+      </ApolloProvider>
     </>
   );
 }

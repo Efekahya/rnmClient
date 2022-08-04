@@ -30,6 +30,7 @@ export default function Navbar({ Logo }: INavbarProps) {
       }, 500);
     }
   };
+
   const debounceFn = debounce(handleSearch);
 
   const filter: FilterCharacter = {

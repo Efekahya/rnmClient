@@ -22,7 +22,10 @@ export interface IEpisode {
   name: string;
   air_date: string;
   episode: string;
+  characters: [ICharacter];
+  created: string;
 }
+
 export interface IEpisodeCardProps {
   episode: string;
   date: string;
