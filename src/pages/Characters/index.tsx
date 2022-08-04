@@ -34,12 +34,12 @@ export default function Characters() {
   useEffect(() => {
     if (loading === false && data) {
       setCharacters(prevState => {
-        prevState = [...characters, ...data.characters.results];
+        prevState = [...prevState, ...data.characters.results];
         return prevState;
       });
       setInfo(data.characters.info);
     }
-  }, [loading, data, characters]);
+  }, [loading, data]);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <p>Error :(</p>;
@@ -51,7 +51,6 @@ export default function Characters() {
         window.innerHeight + document.documentElement.scrollTop + 40 >
         document.documentElement.offsetHeight
       ) {
-        console.log("bottom");
         if (info.next !== null) {
           refetch({
             page: info.next
