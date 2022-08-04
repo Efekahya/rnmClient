@@ -142,7 +142,7 @@ export default function EpisodeDetails() {
         <ShowCount
           count={data.episode.characters.length}
           title="Characters"
-          href={`/episode/${id}/characters`}
+          href={`/episodes/${id}/characters`}
         />
         <CharacterList characters={data.episode.characters} count={4} />
       </div>
