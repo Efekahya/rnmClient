@@ -11,14 +11,15 @@ export default function CharacterList({
   } else {
     sliced = characters;
   }
+
   return (
     <div className="characterList--container">
       <div className="characterList--characterList">
-        {sliced?.map(({ image, name, id, origin, spacies }) => (
+        {sliced?.map(({ image, name, id, origin, species }) => (
           <div className="characterList--character" key={id}>
             <div className="characterList--imageContainer">
-              <div className="characterList--infoLeft">{origin}</div>
-              <div className="characterList--infoRight">{spacies}</div>
+              <div className="characterList--infoLeft">{origin.name}</div>
+              <div className="characterList--infoRight">{species}</div>
               <a href={"/characters/" + id}>
                 <img className="characterList--image" src={image} alt={name} />
               </a>

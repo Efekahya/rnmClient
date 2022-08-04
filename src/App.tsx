@@ -1,22 +1,37 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+
+import Home from "./pages/Home";
+import Episode from "./pages/Episode";
+import Characters from "./pages/Characters";
+import CharacterDetails from "./pages/CharacterDetails";
 
 import { ReactComponent as Logo } from "./assets/digieggs.svg";
 
 import "./styles.scss";
-import Home from "./pages/Home";
+
+const client = new ApolloClient({
+  uri: "https://rickandmortyapi.com/graphql",
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
     <>
-      <Navbar Logo={<Logo />} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
+      <ApolloProvider client={client}>
+        <Navbar Logo={<Logo />} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/episodes" element={<Episode />} />
+            <Route path="/characters" element={<Characters />} />
+            <Route path="/characters/:id" element={<CharacterDetails />} />
+          </Routes>
+        </BrowserRouter>
+      </ApolloProvider>
     </>
   );
 }

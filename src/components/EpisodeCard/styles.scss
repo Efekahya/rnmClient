@@ -1,4 +1,7 @@
 .episodeCard--card {
+    all: unset;
+    border-radius: 8px;
+    cursor: pointer;
     background: $gray;
     display: flex;
     flex-direction: column;
@@ -16,9 +19,9 @@
 }
 
 .episodeCard--episodeContainer {
-    min-width: 320px;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
 }
 
 .episodeCard--header {
@@ -68,7 +71,6 @@
     gap: 8px;
 }
 
-
 button {
     all: unset;
     cursor: pointer;
@@ -79,11 +81,9 @@ button {
     }
 }
 
-
 .episodeCard--psuedo {
     position: absolute;
     width: 100%;
-    min-width: 320px;
     height: 0px;
 }
 
@@ -96,4 +96,13 @@ button {
 
 .episodeCard--inline {
     display: inline;
+}
+
+.episodeCard-filled {
+    stroke: $black;
+    fill: $black;
+}
+
+.episodeCard-empty {
+    stroke: $darkgray;
 }

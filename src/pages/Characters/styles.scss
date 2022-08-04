@@ -1,0 +1,29 @@
+.characters-page-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.characters-page-container {
+    width: 80%;
+    max-width: 1120px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.characterList--container {
+    margin: 0px;
+    width: 100%;
+}
+
+.characterList--image {
+    border-radius: 8px;
+}
+
+.counter--container {
+    padding-left: 16px;
+}

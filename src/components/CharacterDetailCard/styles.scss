@@ -4,10 +4,11 @@
     align-items: flex-start;
     padding: 16px;
     gap: 10px;
-    min-width: 320px;
     background: #4A614D;
     border-radius: 8px;
+    max-width: 368px;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .characterDetailCard--title {
