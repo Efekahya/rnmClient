@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./styles.scss";
 import { useQuery } from "@apollo/client";
 import { GetCharacters } from "../../queries/queries";
@@ -6,12 +6,16 @@ import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 import { ICharacter, IInfo } from "../../types/interfaces";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { FavoriteContext } from "../../context/favoriteContext";
 
 export default function Characters() {
   const [characters, setCharacters] = React.useState<ICharacter[]>([]);
   const [info, setInfo] = React.useState<IInfo>();
-  const { data, loading, error, refetch } = useQuery(GetCharacters, {});
-
+  const { data, loading, error, refetch } = useQuery(GetCharacters, {
+    variables: { page: 1 }
+  });
+  const favoritedItems = useContext(FavoriteContext);
+  console.log(favoritedItems.favoriteCharacters);
   useEffect(() => {
     setTimeout(() => {
       const fetchMore = (i: number) => {
@@ -53,7 +57,7 @@ export default function Characters() {
       ) {
         if (info.next !== null) {
           refetch({
-            page: info.next
+            page: parseInt(info.next)
           });
         }
       }

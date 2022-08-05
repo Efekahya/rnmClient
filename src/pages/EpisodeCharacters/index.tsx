@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import { GetEpisode } from "../../queries/queries";
 
@@ -14,7 +15,7 @@ const id = window.location.pathname.split("/")[2];
 
 export default function EpisodeCharacters() {
   const [characterArray, setCharacterArray] = React.useState<ICharacter[]>([]);
-  const { loading, error, data, refetch } = useQuery(GetEpisode, {
+  const { loading, error, data } = useQuery(GetEpisode, {
     variables: {
       id
     }
@@ -36,10 +37,10 @@ export default function EpisodeCharacters() {
       <div className="episodeCharacters-frame">
         <div className="episodeCharacters-container">
           <div className="episodeCharacters-goback">
-            <a href={`/episodes/${id}`}>
+            <Link to={`/episodes/${id}`}>
               <Arrow />
               <span>Episode Detail</span>
-            </a>
+            </Link>
           </div>
           <ShowCount
             href="#"

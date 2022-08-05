@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ICharacterListProps } from "../../types/interfaces";
 
 export default function CharacterList({
@@ -20,9 +21,9 @@ export default function CharacterList({
             <div className="characterList--imageContainer">
               <div className="characterList--infoLeft">{origin.name}</div>
               <div className="characterList--infoRight">{species}</div>
-              <a href={"/characters/" + id}>
+              <Link to={"/characters/" + id}>
                 <img className="characterList--image" src={image} alt={name} />
-              </a>
+              </Link>
             </div>
             <span>{name}</span>
           </div>

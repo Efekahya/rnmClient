@@ -1,57 +1,79 @@
-import React, { useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import React, { useContext, useEffect } from "react";
+import { useLazyQuery, useQuery } from "@apollo/client";
 
 import EpisodeCard from "../../components/EpisodeCard";
 
 import { GetEpisodes } from "../../queries/queries";
 import { IEpisode } from "../../types/interfaces";
 import ShowCount from "../../components/ShowCount";
+import { FavoriteContext } from "../../context/favoriteContext";
 
 export default function Episode() {
   const [episodes, setEpisodes] = React.useState<IEpisode[]>([]);
+  const [info, setInfo] = React.useState<number>(0);
   const [episodeArray, setEpisodeArray] = React.useState<JSX.Element[]>([]);
-  const { loading, error, data, refetch } = useQuery(GetEpisodes, {
-    variables: {
-      page: 1
-    }
-  });
+  const [getEpisodes, { loading, error, data }] = useLazyQuery(GetEpisodes);
+  const favoritedItems = useContext(FavoriteContext);
+
+  useEffect(() => {
+    getEpisodes({ variables: { page: 1 } });
+  }, []);
 
   useEffect(() => {
     if (loading === false && data) {
       setEpisodes(episodes => [...episodes, ...data.episodes.results]);
+      setInfo(info => info + data.episodes.info.count);
     }
   }, [data, loading]);
 
   useEffect(() => {
-    if (episodes.length > 0) {
-      setEpisodeArray(episodeArray => {
-        episodeArray = episodes.map(
+    setEpisodeArray(prevState => {
+      prevState = episodes.map(
+        ({
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          ({ id, name, air_date, episode }: IEpisode) => {
-            return (
-              <>
-                <div className="episodes-page-item">
-                  <EpisodeCard
-                    key={id}
-                    id={id}
-                    title={name}
-                    date={air_date}
-                    episode={episode}
-                    description="lorem ipsum"
-                    favorited={false}
-                    handleSetFavorited={() => console.log("here")}
-                  />
-                </div>
-              </>
-            );
-          }
-        );
-        return episodeArray;
-      });
-    }
-  }, [episodes]);
+          air_date,
+          name,
+          id,
+          episode
+        }: {
+          air_date: string;
+          name: string;
+          id: number;
+          episode: string;
+        }) => {
+          return (
+            <div className="homepage-item" key={id}>
+              <EpisodeCard
+                id={id}
+                date={air_date}
+                title={name}
+                episode={episode}
+                description={"lorem ipsum"}
+                favorited={favoritedItems.favoriteEpisodes.includes(
+                  parseInt(id.toString())
+                )}
+                handleSetFavorited={() => {
+                  if (
+                    favoritedItems.favoriteEpisodes.includes(
+                      parseInt(id.toString())
+                    )
+                  ) {
+                    favoritedItems.removeFavoriteEpisode(
+                      parseInt(id.toString())
+                    );
+                  } else {
+                    favoritedItems.addFavoriteEpisode(parseInt(id.toString()));
+                  }
+                }}
+              />
+            </div>
+          );
+        }
+      );
+      return prevState;
+    });
+  }, [episodes, favoritedItems]);
 
-  if (loading) return <p>loading...</p>;
   if (error) return <p>error</p>;
 
   if (loading === false && data && data.episodes.info) {
@@ -62,23 +84,18 @@ export default function Episode() {
         document.documentElement.offsetHeight
       ) {
         if (data.episodes.info.next !== null) {
-          refetch({
-            page: data.episodes.info.next
+          getEpisodes({
+            variables: { page: data.episodes.info.next }
           });
         }
       }
     };
   }
-
   return (
     <div>
       <div className="episodes-page-showcount-container">
         <div className="episodes-page-showcount">
-          <ShowCount
-            count={data.episodes.info.count}
-            title="Episodes"
-            href="#"
-          />
+          <ShowCount count={info} title="Episodes" href="#" />
         </div>
       </div>
       <div className="episodes-page-container">
