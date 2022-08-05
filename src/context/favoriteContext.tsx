@@ -31,10 +31,7 @@ export const FavoriteProvider = ({
     localFavorites.characters.length > 0 ? localFavorites.characters : []
   );
   const addFavoriteEpisode = (id: number) => {
-    setFavoriteEpisodes(prevState => {
-      prevState = [...prevState, id];
-      return prevState;
-    });
+    setFavoriteEpisodes(prevState => [...prevState, id]);
     localStorage.setItem(
       "favorites",
       JSON.stringify({
