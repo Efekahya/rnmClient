@@ -21,16 +21,8 @@
 .episodeCard--episodeContainer {
     width: 100%;
     box-sizing: border-box;
+    position: relative;
 
-    button {
-        all: unset;
-        cursor: pointer;
-        border-radius: 8px;
-
-        &:active {
-            background: #E7F3E9 !important;
-        }
-    }
 }
 
 .episodeCard--header {
@@ -80,29 +72,25 @@
     gap: 8px;
 }
 
-
-button {
-    all: unset;
-    cursor: pointer;
-    border-radius: 8px;
-
-    &:active {
-        background: #E7F3E9 !important;
-    }
-}
-
-
 .episodeCard--psuedo {
     position: absolute;
     width: 100%;
     height: 0px;
+    float: right;
 }
 
 .episodeCard--favoriteButton {
+    all: unset;
     position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    float: right;
     left: -16px;
     top: 26px;
-    float: right;
+
+    &:active {
+        background: #E7F3E9 !important;
+    }
 }
 
 .episodeCard--inline {

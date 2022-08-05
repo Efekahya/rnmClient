@@ -94,7 +94,6 @@
     }
 }
 
-
 .episode-detailsPage-header {
     display: flex;
     align-items: flex-start;
@@ -140,6 +139,15 @@
     justify-content: flex-start;
     flex-direction: column;
     width: 100%;
+}
+
+.episode-detailsPage-counter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 24px;
+    max-width: 1120px;
 }
 
 .showMore {

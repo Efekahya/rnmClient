@@ -139,15 +139,23 @@ export default function EpisodeDetails() {
         </div>
       </div>
       <div className="episode-detailsPage-characters">
-        <ShowCount
-          count={data.episode.characters.length}
-          title="Characters"
-          href={`/episodes/${id}/characters`}
-        />
+        <div className="episode-detailsPage-counter">
+          <ShowCount
+            count={data.episode.characters.length}
+            title="Characters"
+            href={`/episodes/${id}/characters`}
+          />
+        </div>
         <CharacterList characters={data.episode.characters} count={4} />
       </div>
       <div className="episode-detailsPage-locations">
-        <ShowCount count={uniqueLocations.length} title="Locations" href="#" />
+        <div className="episode-detailsPage-counter">
+          <ShowCount
+            count={uniqueLocations.length}
+            title="Locations"
+            href="#"
+          />
+        </div>
         <div className="location-items">
           <div className="location-frame">{uniqueLocations}</div>
         </div>
