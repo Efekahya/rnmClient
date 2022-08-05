@@ -100,9 +100,9 @@ export default function Favorites() {
     <div className="favorites-main-frame">
       <div className="favorites-main-container">
         <h1>Favorites</h1>
+        <ShowCount count={characters.length || 0} href="#" title="Characters" />
         {characters.length > 0 ? (
           <>
-            <ShowCount count={characters.length} href="#" title="Characters" />
             <div className="favorites-characters">
               <CharacterList characters={characters} count={-1} />
             </div>
@@ -112,9 +112,9 @@ export default function Favorites() {
             You have no favourite character yet
           </div>
         )}
+        <ShowCount count={episodes.length || 0} href="#" title="Episodes" />
         {episodes.length > 0 ? (
           <>
-            <ShowCount count={episodes.length} href="#" title="Episodes" />
             <div className="favorites-episodes">{episodeArray}</div>
           </>
         ) : (
