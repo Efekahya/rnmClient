@@ -39,7 +39,11 @@ export const FavoriteProvider = ({
     localStorage.setItem(
       "favorites",
       JSON.stringify({
-        episodes: [...favoriteEpisodes, id],
+        episodes: [
+          ...(JSON.parse(localStorage.getItem("favorites") || "{}").episodes ||
+            []),
+          id
+        ],
         characters: favoriteCharacters
       })
     );
@@ -53,7 +57,11 @@ export const FavoriteProvider = ({
       "favorites",
       JSON.stringify({
         episodes: favoriteEpisodes,
-        characters: [...favoriteCharacters, id]
+        characters: [
+          ...(JSON.parse(localStorage.getItem("favorites") || "{}")
+            .characters || []),
+          id
+        ]
       })
     );
   };

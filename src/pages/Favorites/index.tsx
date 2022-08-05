@@ -39,8 +39,8 @@ export default function Favorites() {
   }, []);
   useEffect(() => {
     setEpisodes([]);
-    setCharacters([]);
   }, [favoritedItems]);
+
   useEffect(() => {
     if (Episodes.loading === false && Episodes.data) {
       setEpisodes(episodes => [...episodes, ...Episodes.data.episodesByIds]);
