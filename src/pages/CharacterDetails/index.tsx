@@ -18,7 +18,6 @@ import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { FavoriteContext } from "../../context/favoriteContext";
 
-console.log(window.location.href);
 export default function CharacterDetails() {
   const favoritedItems = useContext(FavoriteContext);
   const [getCharacter, { loading, error, data }] = useLazyQuery(GetCharacter);

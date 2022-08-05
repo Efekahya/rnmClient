@@ -6,7 +6,6 @@ import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 import { ICharacter, IInfo } from "../../types/interfaces";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { FavoriteContext } from "../../context/favoriteContext";
 
 export default function Characters() {
   const [characters, setCharacters] = React.useState<ICharacter[]>([]);
@@ -14,8 +13,14 @@ export default function Characters() {
   const { data, loading, error, refetch } = useQuery(GetCharacters, {
     variables: { page: 1 }
   });
-  const favoritedItems = useContext(FavoriteContext);
-  console.log(favoritedItems.favoriteCharacters);
+
+  useEffect(() => {
+    setCharacters(prevState => {
+      prevState = [];
+      return prevState;
+    });
+  }, []);
+
   useEffect(() => {
     setTimeout(() => {
       const fetchMore = (i: number) => {
