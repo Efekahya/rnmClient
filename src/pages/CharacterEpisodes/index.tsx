@@ -21,7 +21,7 @@ export default function CharacterEpisodes() {
 
   const { loading, error, data } = useQuery(GetCharacterEpisodes, {
     variables: {
-      id: id
+      id: window.location.pathname.split("/")[2]
     }
   });
 

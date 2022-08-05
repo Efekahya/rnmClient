@@ -17,7 +17,7 @@ export default function EpisodeCharacters() {
   const [characterArray, setCharacterArray] = React.useState<ICharacter[]>([]);
   const { loading, error, data } = useQuery(GetEpisode, {
     variables: {
-      id
+      id: window.location.pathname.split("/")[2]
     }
   });
 
