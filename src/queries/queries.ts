@@ -17,9 +17,35 @@ export const GetEpisodes = gql`
     }
   }
 `;
+
 export const GetEpisode = gql`
   query GetEpisode($id: ID!) {
     episode(id: $id) {
+      id
+      name
+      air_date
+      episode
+      characters {
+        id
+        name
+        image
+        origin {
+          name
+        }
+        species
+        location {
+          name
+          dimension
+          type
+        }
+      }
+    }
+  }
+`;
+
+export const GetEpisodesByIds = gql`
+  query GetEpisode($ids: [ID!]!) {
+    episodesByIds(ids: $ids) {
       id
       name
       air_date
@@ -74,6 +100,33 @@ export const GetCharacters = gql`
 export const GetCharacter = gql`
   query GetCharacters($id: ID!) {
     character(id: $id) {
+      id
+      name
+      status
+      species
+      type
+      gender
+      origin {
+        name
+      }
+      location {
+        name
+      }
+      image
+      episode {
+        id
+        name
+        air_date
+        episode
+      }
+      created
+    }
+  }
+`;
+
+export const GetCharactersByIds = gql`
+  query GetCharacters($ids: [ID!]!) {
+    charactersByIds(ids: $ids) {
       id
       name
       status

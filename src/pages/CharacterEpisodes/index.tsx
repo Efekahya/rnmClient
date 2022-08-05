@@ -65,7 +65,7 @@ export default function CharacterEpisodes() {
         return prevState;
       });
     }
-  }, [data, loading, seasons]);
+  }, [data, loading, seasons, favoritedItems]);
 
   useEffect(() => {
     if (loading === false && data) {

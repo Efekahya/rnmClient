@@ -176,10 +176,10 @@ export default function Navbar({ Logo }: INavbarProps) {
             }
           />
           <div className="navbar--itemsContainer">
-            <div className="navbar--items">
+            <Link to="/favorites" className="navbar--items">
               <StarIcon />
               <span>Favorites</span>
-            </div>
+            </Link>
           </div>
         </div>
       </nav>

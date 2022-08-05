@@ -86,6 +86,8 @@
 }
 
 .navbar--itemsContainer {
+  all: unset;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,7 +109,6 @@
   stroke: $darkgray;
 }
 
-
 .navbar-dropdown-container {
   display: none;
   justify-content: center;
@@ -122,7 +123,6 @@
   width: 100%;
   z-index: 2;
 }
-
 
 .navbar-dropdown-wrapper {
   position: relative;
@@ -167,6 +167,13 @@
   align-items: center;
   justify-content: center;
   padding: 8px;
+  z-index: 99;
+}
+
+.favorites-noFavorites {
+  width: 100%;
+  @include interText (700, 32px, 39px, $darkgray);
+  text-align: center;
 }
 
 .navbar-count {
