@@ -1,32 +1,46 @@
 import React, { useContext, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GetEpisodesByIds, GetCharactersByIds } from "../../queries/queries";
+
 import { ICharacter, IEpisode } from "../../types/interfaces";
+
 import EpisodeCard from "../../components/EpisodeCard";
 import ShowCount from "../../components/ShowCount";
+import CharacterList from "../../components/CharacterList";
 
 import { FavoriteContext } from "../../context/favoriteContext";
 
 import "./styles.scss";
-import CharacterList from "../../components/CharacterList";
 
 export default function Favorites() {
   const favoritedItems = useContext(FavoriteContext);
-
+  const favorited = JSON.parse(
+    localStorage.getItem("favorites") ||
+      { favoriteEpisodes: [], favoriteCharacters: [] }.toString()
+  );
   const [episodes, setEpisodes] = React.useState<IEpisode[]>([]);
   const [episodeArray, setEpisodeArray] = React.useState<JSX.Element[]>([]);
   const [characters, setCharacters] = React.useState<ICharacter[]>([]);
+
   const Episodes = useQuery(GetEpisodesByIds, {
     variables: {
-      ids: favoritedItems.favoriteEpisodes
+      ids: favorited.episodes
     }
   });
   const Characters = useQuery(GetCharactersByIds, {
     variables: {
-      ids: favoritedItems.favoriteCharacters
+      ids: favorited.characters
     }
   });
 
+  useEffect(() => {
+    setEpisodes([]);
+    setCharacters([]);
+  }, []);
+  useEffect(() => {
+    setEpisodes([]);
+    setCharacters([]);
+  }, [favoritedItems]);
   useEffect(() => {
     if (Episodes.loading === false && Episodes.data) {
       setEpisodes(episodes => [...episodes, ...Episodes.data.episodesByIds]);
@@ -64,15 +78,9 @@ export default function Favorites() {
                 title={name}
                 episode={episode}
                 description={"lorem ipsum"}
-                favorited={favoritedItems.favoriteEpisodes.includes(
-                  parseInt(id.toString())
-                )}
+                favorited={favorited.episodes.includes(parseInt(id.toString()))}
                 handleSetFavorited={() => {
-                  if (
-                    favoritedItems.favoriteEpisodes.includes(
-                      parseInt(id.toString())
-                    )
-                  ) {
+                  if (favorited.episodes.includes(parseInt(id.toString()))) {
                     favoritedItems.removeFavoriteEpisode(
                       parseInt(id.toString())
                     );
@@ -92,12 +100,28 @@ export default function Favorites() {
     <div className="favorites-main-frame">
       <div className="favorites-main-container">
         <h1>Favorites</h1>
-        <ShowCount count={characters.length} href="#" title="Characters" />
-        <div className="favorites-characters">
-          <CharacterList characters={characters} count={-1} />
-        </div>
-        <ShowCount count={episodes.length} href="#" title="Episodes" />
-        <div className="favorites-episodes">{episodeArray}</div>
+        {characters.length > 0 ? (
+          <>
+            <ShowCount count={characters.length} href="#" title="Characters" />
+            <div className="favorites-characters">
+              <CharacterList characters={characters} count={-1} />
+            </div>
+          </>
+        ) : (
+          <div className="favorites-noFavorites">
+            You have no favourite character yet
+          </div>
+        )}
+        {episodes.length > 0 ? (
+          <>
+            <ShowCount count={episodes.length} href="#" title="Episodes" />
+            <div className="favorites-episodes">{episodeArray}</div>
+          </>
+        ) : (
+          <div className="favorites-noFavorites">
+            You have no favourite episode yet
+          </div>
+        )}
       </div>
     </div>
   );

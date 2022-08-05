@@ -170,6 +170,12 @@
   z-index: 99;
 }
 
+.favorites-noFavorites {
+  width: 100%;
+  @include interText (700, 32px, 39px, $darkgray);
+  text-align: center;
+}
+
 .navbar-count {
   display: flex;
   justify-content: center;

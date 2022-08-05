@@ -17,9 +17,11 @@ export default function EpisodeDetails() {
     []
   );
   const [showMore, setShowMore] = React.useState(false);
-
+  const [id, setId] = React.useState<string>("");
   const favoritedItems = useContext(FavoriteContext);
-
+  useEffect(() => {
+    setId(window.location.href.split("/")[4]);
+  }, []);
   const { loading, error, data } = useQuery(GetEpisode, {
     variables: {
       id: id

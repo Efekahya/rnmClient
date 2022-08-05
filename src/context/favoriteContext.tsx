@@ -25,10 +25,14 @@ export const FavoriteProvider = ({
 }) => {
   const localFavorites = JSON.parse(localStorage.getItem("favorites") || "{}");
   const [favoriteEpisodes, setFavoriteEpisodes] = React.useState<number[]>(
-    localFavorites.episodes.length > 0 ? localFavorites.episodes : []
+    localFavorites.length > 0 && localFavorites.episodes.length > 0
+      ? localFavorites.episodes
+      : []
   );
   const [favoriteCharacters, setFavoriteCharacters] = React.useState<number[]>(
-    localFavorites.characters.length > 0 ? localFavorites.characters : []
+    localFavorites.length > 0 && localFavorites.characters.length > 0
+      ? localFavorites.characters
+      : []
   );
   const addFavoriteEpisode = (id: number) => {
     setFavoriteEpisodes(prevState => {
