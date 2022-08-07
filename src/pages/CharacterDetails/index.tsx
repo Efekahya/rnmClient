@@ -17,6 +17,7 @@ import ShowCount from "../../components/ShowCount";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { FavoriteContext } from "../../context/favoriteContext";
+import Navigation from "../../components/Navigation";
 
 export default function CharacterDetails() {
   const favoritedItems = useContext(FavoriteContext);
@@ -124,6 +125,7 @@ export default function CharacterDetails() {
     <>
       <div className="character-container">
         <div className="character-details-container">
+          <Navigation />
           <div className="character-details">
             <div className="character-name-container">
               <div className="character-name">

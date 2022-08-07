@@ -1,12 +1,11 @@
 .characterEpisodes-navigation-container {
-    width: 100%;
+    width: calc(100% - 32px);
     max-width: 1120px;
 }
 
 .characterEpisodes-navigation {
     width: 100%;
-    padding: 16px;
-    padding-left: 0px;
+    padding: 48px 0px 16px 0px;
     align-self: flex-start;
 }
 
@@ -23,7 +22,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    width: 100%;
+    width: calc(100% - 32px);
     height: 100%;
     max-width: 1120px;
 }
@@ -89,7 +88,7 @@
     }
 
     .characterEpisodes-episode-list {
-        padding: 16px;
+        padding: 0px;
         box-sizing: border-box;
         width: 100%;
         align-items: center;
@@ -101,19 +100,12 @@
         box-sizing: border-box;
     }
 
-    .dropdown-container {
-        width: 100%;
-        height: 100%;
-        padding: 16px;
-        box-sizing: border-box;
-    }
-
-    .dropdown-dropdown {
-        width: 100%;
-        height: 100%;
-    }
-
     .characterEpisodes-character-details {
         max-width: 100%;
     }
+
+    .characterEpisodes-character-name {
+        @include interText(700, 32px, 39px, $black);
+    }
+
 }

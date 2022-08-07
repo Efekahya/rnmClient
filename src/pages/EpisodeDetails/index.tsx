@@ -1,15 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
-import { GetEpisode } from "../../queries/queries";
+import { ReactComponent as Globe } from "../../assets/globe.svg";
+
 import AddFavorites from "../../components/AddFavorites";
 import CharacterList from "../../components/CharacterList";
 import ShowCount from "../../components/ShowCount";
+
+import { GetEpisode } from "../../queries/queries";
 import { ICharacter, ILocation } from "../../types/interfaces";
 import { FavoriteContext } from "../../context/favoriteContext";
-const id = window.location.href.split("/")[4];
 
 export default function EpisodeDetails() {
   const [locationsArray, setLocationsArray] = React.useState<ILocation[]>([]);
@@ -19,14 +21,26 @@ export default function EpisodeDetails() {
   const [showMore, setShowMore] = React.useState(false);
   const [id, setId] = React.useState<string>("");
   const favoritedItems = useContext(FavoriteContext);
+
+  const location = useLocation();
   useEffect(() => {
     setId(window.location.href.split("/")[4]);
+    setLocationsArray([]);
+    setUniqueLocations([]);
   }, []);
-  const { loading, error, data } = useQuery(GetEpisode, {
+
+  const { loading, error, data, refetch } = useQuery(GetEpisode, {
     variables: {
-      id: id
+      id: location.pathname.split("/")[2]
     }
   });
+
+  useEffect(() => {
+    refetch({
+      id: location.pathname.split("/")[2]
+    });
+  }),
+    [id];
   useEffect(() => {
     if (loading === false && data) {
       setLocationsArray(prevState => {
@@ -58,7 +72,13 @@ export default function EpisodeDetails() {
               <>
                 <div className="location-container">
                   <div className="location-title">
-                    <div className="location-name">{name}</div>
+                    <div className="location-name">
+                      <div className="location-globe">
+                        <Globe />
+                      </div>
+
+                      {name}
+                    </div>
                     <div className="location-type">{type}</div>
                   </div>
                   <div className="location-dimension">{dimension}</div>
@@ -75,7 +95,7 @@ export default function EpisodeDetails() {
   if (error) return <p>Error :(</p>;
 
   return (
-    <div>
+    <div className="episode-detailsPage-main">
       <div className="episode-detailsPage-frame">
         <div className="episode-detailsPage-container">
           <div className="episode-detailsPage-goBack">
@@ -88,7 +108,9 @@ export default function EpisodeDetails() {
             <Link to={`/episodes/${data.episode.id - 1}`}>
               <Arrow className="arrow" />
             </Link>
-            {data.episode.episode}
+            <div className="episode-detailsPage-episodeText">
+              {data.episode.episode}
+            </div>
             <Link to={`/episodes/${parseInt(data.episode.id) + 1}`}>
               <Arrow className="arrow-right" />
             </Link>
@@ -108,7 +130,9 @@ export default function EpisodeDetails() {
               <div className="episode-detailsPage-addtofavorite">
                 <AddFavorites
                   themeClass="black transparent"
-                  favorited={false}
+                  favorited={favoritedItems.favoriteEpisodes.includes(
+                    parseInt(id.toString())
+                  )}
                   toggleFavorite={() => {
                     if (
                       favoritedItems.favoriteEpisodes.includes(
@@ -166,7 +190,9 @@ export default function EpisodeDetails() {
             href={`/episodes/${id}/characters`}
           />
         </div>
-        <CharacterList characters={data.episode.characters} count={4} />
+        <div className="episode-detailsPage-characters-container">
+          <CharacterList characters={data.episode.characters} count={4} />
+        </div>
       </div>
       <div className="episode-detailsPage-locations">
         <div className="episode-detailsPage-counter">

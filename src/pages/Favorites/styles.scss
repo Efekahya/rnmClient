@@ -4,25 +4,32 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 24px;
+    margin-bottom: 24px;
 }
 
 .favorites-main-container {
     max-width: 1120px;
-    width: 100%;
+    width: calc(100% - 16px);
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    margin: 16px
+}
+
+.favorites-main-text {
+    @include interText(700, 32px, 39px, $black);
+    padding: 48px 0px 48px 0px;
+}
+
+.favorites-noFavorites {
+    width: 100%;
+    @include interText (700, 32px, 39px, $darkgray);
+    text-align: center;
 }
 
 .favorites-characters {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 24px;
+    margin-bottom: 48px;
 }
 
 .favorites-episodes {
@@ -31,10 +38,11 @@
     flex-wrap: wrap;
     flex: 1 0 auto;
     gap: 24px;
+    margin-top: 8px;
 }
 
-// External styles
-
-.characterList--characterList {
-    width: 100%;
+@media (max-width: $breakpoint-md) {
+    .favorites-noFavorites {
+        @include interText (700, 16px, 19px, $darkgray);
+    }
 }

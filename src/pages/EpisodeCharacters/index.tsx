@@ -49,7 +49,9 @@ export default function EpisodeCharacters() {
           />
         </div>
       </div>
-      <CharacterList characters={characterArray} count={-1} />
+      <div className="episodeCharacters-characters">
+        <CharacterList characters={characterArray} count={-1} />
+      </div>
     </>
   );
 }

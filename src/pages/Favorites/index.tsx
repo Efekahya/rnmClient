@@ -10,8 +10,6 @@ import CharacterList from "../../components/CharacterList";
 
 import { FavoriteContext } from "../../context/favoriteContext";
 
-import "./styles.scss";
-
 export default function Favorites() {
   const favoritedItems = useContext(FavoriteContext);
   const favorited = JSON.parse(
@@ -99,7 +97,7 @@ export default function Favorites() {
   return (
     <div className="favorites-main-frame">
       <div className="favorites-main-container">
-        <h1>Favorites</h1>
+        <div className="favorites-main-text">Favorites</div>
         <ShowCount count={characters.length || 0} href="#" title="Characters" />
         {characters.length > 0 ? (
           <>

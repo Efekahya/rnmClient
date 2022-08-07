@@ -183,17 +183,19 @@ export default function Navbar({ Logo }: INavbarProps) {
           </div>
         </div>
       </nav>
-      <div className="navbar--secondaryInput">
-        <SearchBar
-          handleSearch={e => debounceFn(e.target.value)}
-          searchValue={searchValue}
-          classValue="navbar--searchInputTwo"
-          onFocus={focus =>
-            setTimeout(() => {
-              setIsFocused(focus);
-            }, 50)
-          }
-        />
+      <div className="navbar--secondaryInput-psuedo">
+        <div className="navbar--secondaryInput">
+          <SearchBar
+            handleSearch={e => debounceFn(e.target.value)}
+            searchValue={searchValue}
+            classValue="navbar--searchInputTwo"
+            onFocus={focus =>
+              setTimeout(() => {
+                setIsFocused(focus);
+              }, 50)
+            }
+          />
+        </div>
       </div>
       {searchValue !== "" && (
         <div className="navbar-dropdown-psuedo">
@@ -219,7 +221,9 @@ export default function Navbar({ Logo }: INavbarProps) {
                   href="#"
                 />
               </div>
-              <CharacterList characters={characters} count={-1} />
+              <div className="navbar-search-characters">
+                <CharacterList characters={characters} count={-1} />
+              </div>
             </div>
           ) : (
             <p>No Results</p>

@@ -1,9 +1,7 @@
 .characterList--container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
   height: 100%;
   padding: 0;
 }
@@ -13,9 +11,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  min-width: 320px;
+  min-width: 298px;
   flex: 1 0 auto;
   max-width: 1120px;
+  gap: 16px;
 }
 
 .characterList--character {
@@ -23,7 +22,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  padding: 16px;
   margin: 0;
 }
 
@@ -40,15 +38,28 @@
   height: 100%;
   padding: 0;
   margin: 0;
+  border-radius: 8px;
+  background-color: transparent;
 
   &:hover {
 
     .characterList--infoLeft,
     .characterList--infoRight {
       opacity: 1;
+
     }
 
     box-shadow: -8px 11px 53px rgba(0, 0, 0, 0.13);
+  }
+
+  &:active {
+
+    .characterList--infoLeft,
+    .characterList--infoRight {
+      opacity: 0;
+    }
+
+    box-shadow: none;
   }
 
   transition: box-shadow 0.2s ease-in-out;
@@ -63,6 +74,10 @@
   border-radius: 4px;
   @include interText(700, 12px, 15px, $black);
   transition: opacity 0.2s ease-in-out;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+  white-space: nowrap;
 }
 
 .characterList--infoRight {
@@ -75,6 +90,10 @@
   border-radius: 4px;
   transition: opacity 0.2s ease-in-out;
   @include interText(700, 12px, 15px, $black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+  white-space: nowrap;
 }
 
 .characterList--psuedo {
@@ -87,7 +106,21 @@
 
   //576px
   .characterList--character {
-    width: calc(50% - 32px);
+    width: calc(50% - 8px);
+  }
+
+}
+
+@media (max-width: $breakpoint-md) {
+
+  .characterList--imageContainer {
+    &:hover {
+
+      .characterList--infoLeft,
+      .characterList--infoRight {
+        opacity: 0;
+      }
+    }
   }
 }
 
@@ -95,7 +128,7 @@
 
   // 992px
   .characterList--character {
-    width: calc(33.33% - 32px);
+    width: calc(33.33% - 11px);
   }
 }
 
@@ -103,6 +136,6 @@
 
   // 1200px
   .characterList--character {
-    width: calc(25% - 32px);
+    width: calc(25% - 12px);
   }
 }

@@ -8,22 +8,15 @@
 }
 
 .characters-page-container {
-    width: 80%;
     max-width: 1120px;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    width: calc(100% - 32px);
+    margin-top: 48px;
 }
 
-.characterList--container {
-    margin: 0px;
-    width: 100%;
-}
 
 .characterList--image {
     border-radius: 8px;
-}
-
-.counter--container {
-    padding-left: 16px;
 }

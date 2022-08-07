@@ -24,6 +24,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    padding: 16px 0px 16px 0px;
     gap: 8px;
 }
 
@@ -36,4 +37,14 @@
 
 .counter--title {
     @include interText(700, 32px, 39px, $black)
+}
+
+@media (max-width: $breakpoint-md) {
+    .counter--title {
+        @include interText(700, 20px, 24px, $black)
+    }
+
+    .counter--count {
+        @include interText(700, 16px, 19px, $black)
+    }
 }

@@ -9,10 +9,38 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
     height: 100%;
     padding: 0;
     margin: 16px;
+    margin-top: 48px;
+    gap: 28px;
+
+    .navigation--navigationContainer {
+        align-self: flex-start;
+
+        .navigation--navigationText {
+
+            a {
+                color: white !important;
+            }
+        }
+
+        svg path {
+            stroke: white !important;
+        }
+
+        &:hover {
+            .navigation--navigationText {
+                a {
+                    color: $grayer  !important;
+                }
+            }
+
+            svg path {
+                stroke: $grayer  !important;
+            }
+        }
+    }
 }
 
 .character-details {
@@ -37,6 +65,7 @@
     align-items: center;
     color: white;
     width: 100%;
+    gap: 16px
 }
 
 .character-name-text {
@@ -62,7 +91,6 @@
     justify-content: center;
     padding: 20px;
     flex-wrap: wrap;
-    width: 100%;
     max-width: 760px;
     gap: 24px;
     flex: 1 0 auto;
@@ -81,6 +109,7 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    margin-bottom: 24px;
 }
 
 .character-episode-container {
@@ -188,12 +217,18 @@
 
     .character-name {
         flex-direction: column;
+        @include interText(700, 32px, 39px, white);
+        padding-bottom: 16px;
+        gap: 0px;
     }
-}
 
-@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
-    .characterDetailCard--container {
-        width: 50%;
+    .character-name-text {
+        @include interText(700, 32px, 39px, white);
+    }
+
+    .character-info {
+        gap: 8px;
+        padding: 0px;
     }
 
 }
@@ -206,8 +241,4 @@
     .character-episode-showmore-psuedo {
         display: none;
     }
-}
-
-.counter--container {
-    padding: 16px 0px 16px 0px;
 }
