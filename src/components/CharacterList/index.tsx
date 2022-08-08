@@ -22,7 +22,12 @@ export default function CharacterList({
               <div className="characterList--infoLeft">{origin.name}</div>
               <div className="characterList--infoRight">{species}</div>
               <Link to={"/characters/" + id}>
-                <img className="characterList--image" src={image} alt={name} />
+                <img
+                  loading="lazy"
+                  className="characterList--image"
+                  src={image}
+                  alt={name}
+                />
               </Link>
             </div>
             <span>{name}</span>
