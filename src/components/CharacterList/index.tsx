@@ -23,7 +23,7 @@ export default function CharacterList({
               <div className="characterList--infoRight">{species}</div>
               <Link to={"/characters/" + id}>
                 <img
-                  loading="lazy"
+                  loading="eager"
                   className="characterList--image"
                   src={image}
                   alt={name}
