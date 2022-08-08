@@ -31,6 +31,8 @@
   font-size: 16px;
   background: white url(../../assets/search.svg) no-repeat 13px center;
 
+  @include interText(700, 16px, 19px, #CECECE);
+
   &:hover {
     outline: 1px solid $darkgray;
   }
