@@ -13,8 +13,7 @@ import { FavoriteContext } from "../../context/favoriteContext";
 export default function Favorites() {
   const favoritedItems = useContext(FavoriteContext);
   const favorited = JSON.parse(
-    localStorage.getItem("favorites") ||
-      { favoriteEpisodes: [], favoriteCharacters: [] }.toString()
+    localStorage.getItem("favorites") || `{"episodes":[],"characters":[]}`
   );
   const [episodes, setEpisodes] = React.useState<IEpisode[]>([]);
   const [episodeArray, setEpisodeArray] = React.useState<JSX.Element[]>([]);

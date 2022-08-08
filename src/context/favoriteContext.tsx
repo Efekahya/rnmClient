@@ -24,7 +24,7 @@ export const FavoriteProvider = ({
   children: React.ReactNode;
 }) => {
   const localFavorites = JSON.parse(
-    localStorage.getItem("favorites") || "{episodes:[],characters:[]}"
+    localStorage.getItem("favorites") || `{"episodes":[],"characters":[]}`
   );
   const [favoriteEpisodes, setFavoriteEpisodes] = React.useState<number[]>(
     localFavorites.length > 0 && localFavorites.episodes.length > 0
@@ -60,8 +60,10 @@ export const FavoriteProvider = ({
       JSON.stringify({
         episodes: favoriteEpisodes,
         characters: [
-          ...(JSON.parse(localStorage.getItem("favorites") || "{}")
-            .characters || []),
+          ...(JSON.parse(
+            localStorage.getItem("favorites") ||
+              `{"episodes":[],"characters":[]}`
+          ).characters || []),
           id
         ]
       })
