@@ -8,6 +8,7 @@ import { GetCharacterEpisodes } from "../../queries/queries";
 import { IEpisode } from "../../types/interfaces";
 import Dropdown from "../../components/Dropdown";
 import { FavoriteContext } from "../../context/favoriteContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const id = window.location.pathname.split("/")[2];
 
@@ -81,7 +82,7 @@ export default function CharacterEpisodes() {
     }
   }, [data, loading, filter]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <p>Error :(</p>;
   return (
     <div>

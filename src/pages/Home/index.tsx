@@ -8,6 +8,7 @@ import CharacterList from "../../components/CharacterList";
 import EpisodeCard from "../../components/EpisodeCard";
 
 import { FavoriteContext } from "../../context/favoriteContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Home() {
   const [episodesArray, setEpisodesArray] = React.useState<JSX.Element[]>([]);
@@ -81,7 +82,7 @@ export default function Home() {
     }
   }, [episodes.data, episodes.loading, favoritedItems]);
 
-  if (characters.loading || episodes.loading) return <p>Loading...</p>;
+  if (characters.loading || episodes.loading) return <LoadingSpinner />;
   if (characters.error || episodes.error) return <p>Error :(</p>;
 
   return (

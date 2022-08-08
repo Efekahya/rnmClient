@@ -12,6 +12,7 @@ import ShowCount from "../../components/ShowCount";
 import { GetEpisode } from "../../queries/queries";
 import { ICharacter, ILocation } from "../../types/interfaces";
 import { FavoriteContext } from "../../context/favoriteContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function EpisodeDetails() {
   const [locationsArray, setLocationsArray] = React.useState<ILocation[]>([]);
@@ -91,7 +92,7 @@ export default function EpisodeDetails() {
     }
   }, [loading, data, locationsArray]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <p>Error :(</p>;
 
   return (
