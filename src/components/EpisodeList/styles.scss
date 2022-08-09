@@ -1,0 +1,33 @@
+.episode-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 auto;
+    gap: 24px;
+
+
+    .episodeCard--episodeContainer {
+        width: calc(50% - 12px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: $breakpoint-sm) {
+    .episode-list {
+        .episodeCard--episodeContainer {
+            width: calc(100%);
+        }
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .episode-list {
+        .episodeCard--episodeContainer {
+            width: calc(33.33% - 16px);
+        }
+    }
+}

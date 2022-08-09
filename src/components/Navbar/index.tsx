@@ -183,22 +183,26 @@ export default function Navbar({ Logo }: INavbarProps) {
           </div>
         </div>
       </nav>
-      <div className="navbar--secondaryInput">
-        <SearchBar
-          handleSearch={e => debounceFn(e.target.value)}
-          searchValue={searchValue}
-          classValue="navbar--searchInputTwo"
-          onFocus={focus =>
-            setTimeout(() => {
-              setIsFocused(focus);
-            }, 50)
-          }
-        />
+      <div className="navbar--secondaryInput-psuedo">
+        <div className="navbar--secondaryInput">
+          <SearchBar
+            handleSearch={e => debounceFn(e.target.value)}
+            searchValue={searchValue}
+            classValue="navbar--searchInputTwo"
+            onFocus={focus =>
+              setTimeout(() => {
+                setIsFocused(focus);
+              }, 50)
+            }
+          />
+        </div>
       </div>
       {searchValue !== "" && (
         <div className="navbar-dropdown-psuedo">
           <div
-            className={`navbar-dropdown-container ${isFocused ? "focus" : ""} `}
+            className={`navbar-dropdown-container ${
+              isFocused && searchResultsNames.length > 0 ? "focus" : ""
+            } `}
           >
             <div className="navbar-dropdown-wrapper" id="dropwdown-wrapper">
               {searchResultsNames}
@@ -219,10 +223,16 @@ export default function Navbar({ Logo }: INavbarProps) {
                   href="#"
                 />
               </div>
-              <CharacterList characters={characters} count={-1} />
+              <div className="navbar-search-characters">
+                <CharacterList characters={characters} count={-1} />
+              </div>
             </div>
           ) : (
-            <p>No Results</p>
+            <div className="navbar-searchResult">
+              <div className="navbar-no-result-text">
+                No results found for "{searchValue}"
+              </div>
+            </div>
           )
         ) : episodes.length > 0 ? (
           <div className="navbar-searchResult">
@@ -233,7 +243,11 @@ export default function Navbar({ Logo }: INavbarProps) {
             <div className="navbar-search-episodes">{episodeArray}</div>
           </div>
         ) : (
-          <p>No Results</p>
+          <div className="navbar-searchResult">
+            <div className="navbar-no-result-text">
+              No results found for "{searchValue}""
+            </div>
+          </div>
         ))}
     </>
   );

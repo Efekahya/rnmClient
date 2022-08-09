@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  svg {
+    min-width: 24px;
+  }
 }
 
 .navigation--navigationText {

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 
 import EpisodeCard from "../../components/EpisodeCard";
 
@@ -7,6 +7,7 @@ import { GetEpisodes } from "../../queries/queries";
 import { IEpisode } from "../../types/interfaces";
 import ShowCount from "../../components/ShowCount";
 import { FavoriteContext } from "../../context/favoriteContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Episode() {
   const [episodes, setEpisodes] = React.useState<IEpisode[]>([]);
@@ -75,6 +76,7 @@ export default function Episode() {
   }, [episodes, favoritedItems]);
 
   if (error) return <p>error</p>;
+  if (loading) return <LoadingSpinner />;
 
   if (loading === false && data && data.episodes.info) {
     window.onscroll = e => {

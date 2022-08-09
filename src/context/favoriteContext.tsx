@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IFavoriteContext } from "../types/contextInterface";
+import { IEpisode } from "../types/interfaces";
 
 export const FavoriteContext = React.createContext<IFavoriteContext>({
   favoriteEpisodes: [],
@@ -23,73 +24,98 @@ export const FavoriteProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const localFavorites = JSON.parse(localStorage.getItem("favorites") || "{}");
+  const localFavorites = JSON.parse(
+    localStorage.getItem("favorites") || `{"episodes":[],"characters":[]}`
+  );
+
   const [favoriteEpisodes, setFavoriteEpisodes] = React.useState<number[]>(
-    localFavorites.length > 0 && localFavorites.episodes.length > 0
-      ? localFavorites.episodes
-      : []
+    localFavorites.episodes
   );
   const [favoriteCharacters, setFavoriteCharacters] = React.useState<number[]>(
-    localFavorites.length > 0 && localFavorites.characters.length > 0
-      ? localFavorites.characters
-      : []
+    localFavorites.characters
   );
+
   const addFavoriteEpisode = (id: number) => {
     setFavoriteEpisodes(prevState => [...prevState, id]);
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify({
-        episodes: [
-          ...(JSON.parse(localStorage.getItem("favorites") || "{}").episodes ||
-            []),
-          id
-        ],
-        characters: favoriteCharacters
-      })
-    );
+    const items = JSON.parse(localStorage.getItem("favorites") || "{}");
+    if (items.episodes) {
+      items.episodes.push(id);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify({
+          episodes: items.episodes,
+          characters: items.characters
+        })
+      );
+    } else {
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify({
+          episodes: [id],
+          characters: items.characters
+        })
+      );
+    }
   };
   const addFavoriteCharacter = (id: number) => {
     setFavoriteCharacters(prevState => {
       prevState = [...prevState, id];
       return prevState;
     });
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify({
-        episodes: favoriteEpisodes,
-        characters: [
-          ...(JSON.parse(localStorage.getItem("favorites") || "{}")
-            .characters || []),
-          id
-        ]
-      })
-    );
+    const items = JSON.parse(localStorage.getItem("favorites") || "{}");
+    if (items.characters) {
+      console.log("characters", items.characters);
+      items.characters.push(id);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify({
+          episodes: items.episodes,
+          characters: items.characters
+        })
+      );
+    } else {
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify({
+          episodes: items.episodes,
+          characters: [id]
+        })
+      );
+    }
   };
   const removeFavoriteEpisode = (id: number) => {
     setFavoriteEpisodes(prevState => {
       prevState = prevState.filter(item => item !== id);
       return prevState;
     });
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify({
-        episodes: favoriteEpisodes.filter(item => item !== id),
-        characters: favoriteCharacters
-      })
-    );
+    const items = JSON.parse(localStorage.getItem("favorites") || "{}");
+    if (items.episodes) {
+      items.episodes = items.episodes.filter((item: number) => item !== id);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify({
+          episodes: items.episodes,
+          characters: items.characters
+        })
+      );
+    }
   };
   const removeFavoriteCharacter = (id: number) => {
     setFavoriteCharacters(prevState => {
       prevState = prevState.filter(item => item !== id);
       return prevState;
     });
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify({
-        episodes: favoriteEpisodes,
-        characters: favoriteCharacters.filter(item => item !== id)
-      })
-    );
+    const items = JSON.parse(localStorage.getItem("favorites") || "{}");
+    if (items.characters) {
+      items.characters = items.characters.filter((item: number) => item !== id);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify({
+          episodes: items.episodes,
+          characters: items.characters
+        })
+      );
+    }
   };
 
   const value = {

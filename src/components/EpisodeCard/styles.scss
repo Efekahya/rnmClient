@@ -16,6 +16,11 @@
         background: white;
         box-shadow: -8px 11px 53px rgba(0, 0, 0, 0.13);
     }
+
+    &:active {
+        background: $gray;
+        box-shadow: none;
+    }
 }
 
 .episodeCard--episodeContainer {
@@ -42,9 +47,10 @@
 
 .episodeCard--episode {
     background: $outline;
-    padding: 2px;
+    padding: 2px 4px 2px 4px;
     width: fit-content;
     border-radius: 4px;
+    @include interText(700, 16px, 19px, black);
 }
 
 .episodeCard--date {

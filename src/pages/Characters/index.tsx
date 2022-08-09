@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import "./styles.scss";
 import { useQuery } from "@apollo/client";
 import { GetCharacters } from "../../queries/queries";
 import ShowCount from "../../components/ShowCount";

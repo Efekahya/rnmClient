@@ -7,8 +7,8 @@ import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 import EpisodeCard from "../../components/EpisodeCard";
 
-import "./styles.scss";
 import { FavoriteContext } from "../../context/favoriteContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Home() {
   const [episodesArray, setEpisodesArray] = React.useState<JSX.Element[]>([]);
@@ -82,7 +82,7 @@ export default function Home() {
     }
   }, [episodes.data, episodes.loading, favoritedItems]);
 
-  if (characters.loading || episodes.loading) return <p>Loading...</p>;
+  if (characters.loading || episodes.loading) return <LoadingSpinner />;
   if (characters.error || episodes.error) return <p>Error :(</p>;
 
   return (
@@ -94,10 +94,12 @@ export default function Home() {
             title="Characters"
             href="/characters"
           />
-          <CharacterList
-            characters={characters.data.characters.results}
-            count={8}
-          />
+          <div className="homepage-characters">
+            <CharacterList
+              characters={characters.data.characters.results}
+              count={8}
+            />
+          </div>
           <ShowCount
             count={episodes.data.episodes.info.count}
             title="Episodes"

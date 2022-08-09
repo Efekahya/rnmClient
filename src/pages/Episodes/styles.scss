@@ -7,13 +7,14 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    margin-bottom: 24px;
 }
 
 .episodes-page-items {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 80%;
+    width: calc(100% - 32px);
     height: 100%;
     padding: 0;
     margin: 0;
@@ -21,7 +22,7 @@
     flex-wrap: wrap;
     flex: 1 0 auto;
     gap: 24px;
-    max-width: 1200px;
+    max-width: 1120px;
 }
 
 .episodes-page-item {
@@ -45,6 +46,7 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    margin-top: 48px;
     position: relative;
 }
 
@@ -53,12 +55,12 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 80%;
+    width: calc(100% - 32px);
     height: 100%;
     padding: 0;
     margin: 0;
     position: relative;
-    max-width: 1200px;
+    max-width: 1120px;
 }
 
 @media (max-width: $breakpoint-md) {
@@ -71,10 +73,4 @@
     .episodes-page-item {
         width: 100%;
     }
-}
-
-//External changes
-
-.counter--container {
-    padding: 16px 0px 16px 0px;
 }

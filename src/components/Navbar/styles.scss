@@ -1,20 +1,3 @@
-.homepage-main-frame {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.homepage-main-container {
-  max-width: 1120px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
 .navbar--navbar {
   background-color: $gray;
   padding: 0;
@@ -26,14 +9,12 @@
 }
 
 .navbar--wrapper {
-  width: 100%;
+  width: calc(100% - 32px);
   max-width: 1120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  margin: 16px auto;
   flex-direction: row;
   background: $gray;
   gap: 36px;
@@ -41,14 +22,16 @@
 }
 
 .navbar--searchInput {
-  width: 50%;
+  width: 70%;
   height: 56px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: none;
-  padding: 10px;
-  padding-left: 50px;
+  padding: 16px 24px 16px 24px;
+  padding-left: 68px;
   font-size: 16px;
-  background: white url(../../assets/search.svg) no-repeat 13px center;
+  background: white url(../../assets/search.svg) no-repeat 24px center;
+
+  @include interText(700, 16px, 19px, #CECECE);
 
   &:hover {
     outline: 1px solid $darkgray;
@@ -67,7 +50,7 @@
   padding: 10px;
   padding-left: 50px;
   font-size: 16px;
-  background: white url(../../assets/search.svg) no-repeat 13px center;
+  background: $gray url(../../assets/search.svg) no-repeat 13px center;
 
   &:hover {
     outline: 1px solid $darkgray;
@@ -97,6 +80,7 @@
 }
 
 .navbar--items {
+  all: unset;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,18 +105,18 @@
 .navbar-dropdown-psuedo {
   position: absolute;
   width: 100%;
-  z-index: 2;
+  z-index: 120;
 }
 
 .navbar-dropdown-wrapper {
   position: relative;
   left: 37px;
-  width: 48%;
-  max-width: 560px;
+  width: 70%;
+  max-width: 784px;
   background: white;
   outline: 1px solid $active ;
   border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
   margin: 0px;
   box-sizing: border-box;
   @include interText(700, 19px, 17px, $black);
@@ -148,7 +132,7 @@
   all: unset;
   width: 100%;
   border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
   box-sizing: border-box;
   cursor: pointer;
   display: block;
@@ -161,19 +145,17 @@
 .navbar-searchResult {
   position: absolute;
   width: 100%;
+  min-height: 300%;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 8px;
   z-index: 99;
 }
 
-.favorites-noFavorites {
-  width: 100%;
-  @include interText (700, 32px, 39px, $darkgray);
-  text-align: center;
+.navbar-no-result-text {
+  @include interText(700, 32px, 17px, $darkgray);
+  margin-top: 40px;
 }
 
 .navbar-count {
@@ -181,12 +163,12 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 32px);
   padding: 0px;
   margin: 0px;
   @include interText(700, 14px, 17px, $darkgray);
   gap: 6px;
-  max-width: 1150px;
+  max-width: 1120px;
 }
 
 .navbar-search-header {
@@ -196,10 +178,16 @@
   padding-bottom: 48px;
 }
 
+.navbar-search-characters {
+  width: calc(100% - 32px);
+}
+
 .navbar-search-episodes {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: calc(100% - 32px);
+  height: 100%;
+  background: white;
   max-width: 1120px;
   gap: 12px;
   flex: 1 0 auto;
@@ -221,10 +209,35 @@
 
   .navbar--wrapper {
     width: 100%;
+    padding: 16px;
+  }
+
+  .navbar--brand svg {
+    width: 108px;
+  }
+
+  .navbar--secondaryInput-psuedo {
+    width: 100%;
+    position: absolute;
+  }
+
+  .character-details-container,
+  .homepage-main-frame,
+  .episodes-page-showcount-container,
+  .episode-detailsPage-frame,
+  .favorites-main-container,
+  .characters-page-container,
+  .characterEpisodes-main-frame,
+  .navbar-searchResult,
+  .navbar-dropdown-container {
+    padding-top: 72px !important;
   }
 
   .navbar--secondaryInput {
     display: block;
+    background: transparent;
+    position: relative;
+    z-index: 100;
   }
 
   .navbar-dropdown-wrapper {
@@ -245,12 +258,17 @@
   .navbar-episodes-item {
     width: calc(50% - 12px);
   }
+
+  .navbar-no-result-text {
+    @include interText(700, 21px, 17px, $darkgray);
+  }
 }
 
 @media (max-width: $breakpoint-sm) {
   .navbar-episodes-item {
     width: 100%;
   }
+
 }
 
 @media (max-width: $breakpoint-xs) {

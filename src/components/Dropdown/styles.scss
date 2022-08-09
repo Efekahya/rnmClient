@@ -17,6 +17,7 @@
     background: $gray;
     border-radius: 8px;
     box-sizing: border-box;
+    max-width: 600px;
 
     &:active {
         background: $black ;

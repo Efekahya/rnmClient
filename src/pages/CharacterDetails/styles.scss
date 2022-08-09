@@ -9,26 +9,47 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
     height: 100%;
     padding: 0;
-    margin: 16px;
+    margin: 16px 0px 16px 0px;
+    margin-top: 16px;
+    margin-top: 48px;
+    gap: 28px;
+    max-width: 1120px;
+    width: calc(100% - 48px);
+
+    .navigation--navigationContainer {
+        align-self: flex-start;
+
+        .navigation--navigationText {
+
+            a {
+                color: white !important;
+            }
+        }
+
+        svg path {
+            stroke: white !important;
+        }
+
+        &:hover {
+            .navigation--navigationText {
+                a {
+                    color: $grayer  !important;
+                }
+            }
+
+            svg path {
+                stroke: $grayer  !important;
+            }
+        }
+    }
 }
 
 .character-details {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.character-name-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
     width: 100%;
-    align-self: flex-start;
 }
 
 .character-name {
@@ -37,6 +58,7 @@
     align-items: center;
     color: white;
     width: 100%;
+    gap: 16px
 }
 
 .character-name-text {
@@ -51,7 +73,7 @@
 .character-info-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 24px;
     width: 100%;
 }
@@ -60,12 +82,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
     flex-wrap: wrap;
-    width: 100%;
     max-width: 760px;
     gap: 24px;
-    flex: 1 0 auto;
+    width: 60%;
+    flex-wrap: wrap;
+}
+
+.character__info__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: calc(50% - 12px);
 }
 
 .character-image {
@@ -81,6 +110,7 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    margin-bottom: 24px;
 }
 
 .character-episode-container {
@@ -88,7 +118,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: calc(100% - 32px);
+    width: calc(100% - 48px);
     height: 100%;
     margin: 0;
     max-width: 1124px;
@@ -104,6 +134,7 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    max-width: 1120px;
 }
 
 .character-episode-items-container {
@@ -188,13 +219,21 @@
 
     .character-name {
         flex-direction: column;
+        @include interText(700, 32px, 39px, white);
+        padding-bottom: 16px;
+        gap: 0px;
     }
-}
 
-@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
-    .characterDetailCard--container {
-        width: 50%;
+    .character-name-text {
+        @include interText(700, 32px, 39px, white);
     }
+
+    .character-info {
+        gap: 8px;
+        width: 100%;
+        padding: 0px;
+    }
+
 
 }
 
@@ -206,8 +245,9 @@
     .character-episode-showmore-psuedo {
         display: none;
     }
-}
 
-.counter--container {
-    padding: 16px 0px 16px 0px;
+    .character__info__item {
+        width: 100%;
+    }
+
 }

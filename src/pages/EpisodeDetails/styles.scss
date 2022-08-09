@@ -1,3 +1,15 @@
+.episode-detailsPage-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    gap: 48px;
+}
+
 .episode-detailsPage-main-frame {
     height: 100%;
     width: 100%;
@@ -36,8 +48,7 @@
 
 .episode-detailsPage-container {
     height: 100%;
-    width: 80%;
-    padding: 32px;
+    width: calc(100% - 32px);
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -45,6 +56,7 @@
     justify-content: center;
     gap: 16px;
     max-width: 1120px;
+    padding: 32px 0px 32px 0px;
 }
 
 .episode-detailsPage-goBack {
@@ -76,7 +88,20 @@
     width: 100%;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     @include interText(700, 16px, 19px, white)
+}
+
+.episode-detailsPage-episodeText {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    margin: 0;
+    @include interText(700, 16px, 16px, white);
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 2px;
 }
 
 .arrow {
@@ -133,6 +158,16 @@
     width: 100%;
 }
 
+.episode-detailsPage-characters-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: calc(100% - 32px);
+    max-width: 1120px;
+    gap: 24px;
+}
+
 .episode-detailsPage-locations {
     display: flex;
     align-items: center;
@@ -145,7 +180,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
+    width: calc(100% - 32px);
     gap: 24px;
     max-width: 1120px;
 }
@@ -176,7 +211,8 @@
 .episode-detailsPage-episode-text {
     background: $outline;
     border-radius: 4px;
-    @include interText(700, 48px, 58px, black)
+    @include interText(700, 48px, 58px, black);
+    padding: 2px 8px 2px 8px;
 }
 
 .location-items {
@@ -186,6 +222,7 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    margin-bottom: 24px;
 }
 
 .location-frame {
@@ -193,7 +230,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    width: 80%;
+    width: 100%;
     padding: 0;
     margin: 0;
     gap: 16px;
@@ -211,7 +248,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     gap: 16px;
     background-color: $gray;
     padding: 16px;
@@ -224,19 +261,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 80px;
+    gap: 8px;
     width: 100%
 }
 
 .location-type {
     @include interText(700, 16px, 19px, $black );
-    padding: 8px;
+    padding: 4px 8px;
     border-radius: 4px;
     background: $outline;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .location-name {
+    display: flex;
+    gap: 8px;
     @include interText(700, 16px, 19px, $black)
 }
 
@@ -246,7 +287,7 @@
 
 @media (max-width: $breakpoint-lg) {
     .location-frame {
-        width: 100%;
+        width: calc(100% - 32px);
     }
 
 }
@@ -263,34 +304,45 @@
     .location-container {
         width: calc(50% - 12px);
     }
+
+    .episode-detailsPage-container {
+        width: calc(100% - 32px);
+    }
+
+    .episode-detailsPage-description {
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .episode-detailsPage-title-text {
+        @include interText(700, 32px, 39px, white)
+    }
+
+    .episode-detailsPage-episode-text {
+        @include interText(700, 32px, 39px, black)
+    }
+
+    .episode-detailsPage-info {
+        gap: 8px;
+    }
+
+    .episode-detailsPage-characters-container {
+        width: calc(100% - 32px);
+    }
 }
 
 @media (max-width: $breakpoint-sm) {
     .location-frame {
-        width: 100%;
         flex-direction: column;
     }
 
     .location-container {
         width: 100%;
     }
-}
 
-//External Changes
-
-.counter--container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100%;
-    width: 100%;
-    padding: 16px;
-    margin: 0;
-    gap: 16px;
-    max-width: 1120px;
-    box-sizing: border-box;
-}
-
-.characterList--container {
-    margin: 0px;
+    .episode-detailsPage-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
 }
