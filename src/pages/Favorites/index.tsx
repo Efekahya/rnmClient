@@ -75,7 +75,7 @@ export default function Favorites() {
         {characters.length > 0 ? (
           <>
             <div className="favorites-characters">
-              <CharacterList characters={characters} count={-1} />
+              <CharacterList characters={characters} count={4} />
             </div>
           </>
         ) : (
@@ -91,7 +91,7 @@ export default function Favorites() {
         {filteredEpisodes.length > 0 ? (
           <>
             <div className="favorites-episodes">
-              <EpisodeList episodes={filteredEpisodes} count={-1} />
+              <EpisodeList episodes={filteredEpisodes} count={4} />
             </div>
           </>
         ) : (
