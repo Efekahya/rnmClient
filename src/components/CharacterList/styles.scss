@@ -27,9 +27,9 @@
 
 .characterList--image {
   width: 100%;
-  height: 100%;
   object-fit: cover;
   border-radius: 8px;
+  margin-bottom: -4px;
 }
 
 .characterList--imageContainer {
@@ -41,6 +41,12 @@
   border-radius: 8px;
   background-color: transparent;
 
+  // a {
+  //   all: unset;
+  //   background-color: transparent !important;
+  //   color: transparent !important;
+  // }
+
   &:hover {
 
     .characterList--infoLeft,
@@ -50,6 +56,7 @@
     }
 
     box-shadow: -8px 11px 53px rgba(0, 0, 0, 0.13);
+
   }
 
   &:active {

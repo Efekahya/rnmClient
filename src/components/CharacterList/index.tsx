@@ -18,18 +18,18 @@ export default function CharacterList({
       <div className="characterList--characterList">
         {sliced?.map(({ image, name, id, origin, species }) => (
           <div className="characterList--character" key={id}>
-            <div className="characterList--imageContainer">
-              <div className="characterList--infoLeft">{origin.name}</div>
-              <div className="characterList--infoRight">{species}</div>
-              <Link to={"/characters/" + id}>
+            <Link to={"/characters/" + id} className="characterList__link">
+              <div className="characterList--imageContainer">
+                <div className="characterList--infoLeft">{origin.name}</div>
+                <div className="characterList--infoRight">{species}</div>
                 <img
                   loading="eager"
                   className="characterList--image"
                   src={image}
                   alt={name}
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
             <span>{name}</span>
           </div>
         ))}

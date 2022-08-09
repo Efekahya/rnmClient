@@ -24,12 +24,12 @@
 .navbar--searchInput {
   width: 70%;
   height: 56px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: none;
   padding: 16px 24px 16px 24px;
-  padding-left: 50px;
+  padding-left: 68px;
   font-size: 16px;
-  background: white url(../../assets/search.svg) no-repeat 13px center;
+  background: white url(../../assets/search.svg) no-repeat 24px center;
 
   @include interText(700, 16px, 19px, #CECECE);
 
@@ -153,6 +153,11 @@
   z-index: 99;
 }
 
+.navbar-no-result-text {
+  @include interText(700, 32px, 17px, $darkgray);
+  margin-top: 40px;
+}
+
 .navbar-count {
   display: flex;
   justify-content: center;
@@ -253,12 +258,17 @@
   .navbar-episodes-item {
     width: calc(50% - 12px);
   }
+
+  .navbar-no-result-text {
+    @include interText(700, 21px, 17px, $darkgray);
+  }
 }
 
 @media (max-width: $breakpoint-sm) {
   .navbar-episodes-item {
     width: 100%;
   }
+
 }
 
 @media (max-width: $breakpoint-xs) {

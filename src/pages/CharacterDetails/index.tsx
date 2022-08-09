@@ -112,7 +112,11 @@ export default function CharacterDetails() {
       setCharacterDetailsArray(prevState => {
         prevState = characterDetails.map(
           ({ title, content }: { title: string; content: string }) => {
-            return <CharacterDetailCard title={title} content={content} />;
+            return (
+              <div className="character__info__item">
+                <CharacterDetailCard title={title} content={content} />
+              </div>
+            );
           }
         );
         return prevState;

@@ -200,7 +200,9 @@ export default function Navbar({ Logo }: INavbarProps) {
       {searchValue !== "" && (
         <div className="navbar-dropdown-psuedo">
           <div
-            className={`navbar-dropdown-container ${isFocused ? "focus" : ""} `}
+            className={`navbar-dropdown-container ${
+              isFocused && searchResultsNames.length > 0 ? "focus" : ""
+            } `}
           >
             <div className="navbar-dropdown-wrapper" id="dropwdown-wrapper">
               {searchResultsNames}
@@ -226,7 +228,11 @@ export default function Navbar({ Logo }: INavbarProps) {
               </div>
             </div>
           ) : (
-            <p>No Results</p>
+            <div className="navbar-searchResult">
+              <div className="navbar-no-result-text">
+                No results found for "{searchValue}"
+              </div>
+            </div>
           )
         ) : episodes.length > 0 ? (
           <div className="navbar-searchResult">
@@ -237,7 +243,11 @@ export default function Navbar({ Logo }: INavbarProps) {
             <div className="navbar-search-episodes">{episodeArray}</div>
           </div>
         ) : (
-          <p>No Results</p>
+          <div className="navbar-searchResult">
+            <div className="navbar-no-result-text">
+              No results found for "{searchValue}""
+            </div>
+          </div>
         ))}
     </>
   );
