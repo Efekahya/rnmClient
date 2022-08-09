@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { GetEpisodesByIds, GetCharactersByIds } from "../../queries/queries";
 
 import { ICharacter, IEpisode } from "../../types/interfaces";
@@ -9,95 +9,69 @@ import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 
 import { FavoriteContext } from "../../context/favoriteContext";
+import EpisodeList from "../../components/EpisodeList";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Favorites() {
   const favoritedItems = useContext(FavoriteContext);
-  const favorited = JSON.parse(
-    localStorage.getItem("favorites") || `{"episodes":[],"characters":[]}`
-  );
+
   const [episodes, setEpisodes] = React.useState<IEpisode[]>([]);
-  const [episodeArray, setEpisodeArray] = React.useState<JSX.Element[]>([]);
   const [characters, setCharacters] = React.useState<ICharacter[]>([]);
+  const [filteredEpisodes, setFilteredEpisodes] = React.useState<IEpisode[]>(
+    []
+  );
 
-  const Episodes = useQuery(GetEpisodesByIds, {
+  const [favoritedIds, setFavoriteIds] = React.useState({
+    episodeIds: favoritedItems.favoriteEpisodes,
+    characterIds: favoritedItems.favoriteCharacters
+  });
+  const Episodes = useLazyQuery(GetEpisodesByIds, {
     variables: {
-      ids: favorited.episodes
+      ids: favoritedIds.episodeIds
     }
   });
-  const Characters = useQuery(GetCharactersByIds, {
+  const Characters = useLazyQuery(GetCharactersByIds, {
     variables: {
-      ids: favorited.characters
+      ids: favoritedIds.characterIds
     }
   });
 
   useEffect(() => {
-    setEpisodes([]);
-    setCharacters([]);
+    Episodes[0]();
+    Characters[0]();
   }, []);
-  useEffect(() => {
-    setEpisodes([]);
-  }, [favoritedItems]);
 
   useEffect(() => {
-    if (Episodes.loading === false && Episodes.data) {
-      setEpisodes(episodes => [...episodes, ...Episodes.data.episodesByIds]);
+    if (Episodes[1].loading === false && Episodes[1].data) {
+      setEpisodes(Episodes[1].data.episodesByIds);
     }
-  }, [Episodes.data, Episodes.loading]);
+  }, [Episodes]);
 
   useEffect(() => {
-    if (Characters.loading === false && Characters.data) {
-      setCharacters(characters => [
-        ...characters,
-        ...Characters.data.charactersByIds
-      ]);
+    if (Characters[1].loading === false && Characters[1].data) {
+      setCharacters(Characters[1].data.charactersByIds);
     }
-  }, [Characters.data, Characters.loading]);
+  }, [Characters]);
+
   useEffect(() => {
-    setEpisodeArray(prevState => {
-      prevState = episodes.map(
-        ({
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          air_date,
-          name,
-          id,
-          episode
-        }: {
-          air_date: string;
-          name: string;
-          id: number;
-          episode: string;
-        }) => {
-          return (
-            <div className="homepage-item" key={id}>
-              <EpisodeCard
-                id={id}
-                date={air_date}
-                title={name}
-                episode={episode}
-                description={"lorem ipsum"}
-                favorited={favorited.episodes.includes(parseInt(id.toString()))}
-                handleSetFavorited={() => {
-                  if (favorited.episodes.includes(parseInt(id.toString()))) {
-                    favoritedItems.removeFavoriteEpisode(
-                      parseInt(id.toString())
-                    );
-                  } else {
-                    favoritedItems.addFavoriteEpisode(parseInt(id.toString()));
-                  }
-                }}
-              />
-            </div>
-          );
-        }
-      );
-      return prevState;
+    setFilteredEpisodes(() => {
+      return episodes.filter(episode => {
+        return favoritedItems.favoriteEpisodes.includes(
+          parseInt(episode.id.toString())
+        );
+      });
     });
   }, [episodes, favoritedItems]);
+
   return (
     <div className="favorites-main-frame">
       <div className="favorites-main-container">
         <div className="favorites-main-text">Favorites</div>
-        <ShowCount count={characters.length || 0} href="#" title="Characters" />
+        <ShowCount
+          count={characters.length || 0}
+          href="/favorites/characters"
+          title="Characters"
+        />
         {characters.length > 0 ? (
           <>
             <div className="favorites-characters">
@@ -109,10 +83,16 @@ export default function Favorites() {
             You have no favourite character yet
           </div>
         )}
-        <ShowCount count={episodes.length || 0} href="#" title="Episodes" />
-        {episodes.length > 0 ? (
+        <ShowCount
+          count={filteredEpisodes.length || 0}
+          href="/favorites/episodes"
+          title="Episodes"
+        />
+        {filteredEpisodes.length > 0 ? (
           <>
-            <div className="favorites-episodes">{episodeArray}</div>
+            <div className="favorites-episodes">
+              <EpisodeList episodes={filteredEpisodes} count={-1} />
+            </div>
           </>
         ) : (
           <div className="favorites-noFavorites">
