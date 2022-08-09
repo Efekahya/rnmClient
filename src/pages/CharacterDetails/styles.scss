@@ -230,12 +230,10 @@
 
     .character-info {
         gap: 8px;
+        width: 100%;
         padding: 0px;
     }
 
-    .character__info__item {
-        width: 100%;
-    }
 
 }
 
@@ -247,4 +245,9 @@
     .character-episode-showmore-psuedo {
         display: none;
     }
+
+    .character__info__item {
+        width: 100%;
+    }
+
 }
