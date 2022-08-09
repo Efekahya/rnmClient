@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { GetEpisodesByIds, GetCharactersByIds } from "../../queries/queries";
 
 import { ICharacter, IEpisode } from "../../types/interfaces";
 
-import EpisodeCard from "../../components/EpisodeCard";
 import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 
@@ -21,15 +20,17 @@ export default function Favorites() {
     []
   );
 
-  const [favoritedIds, setFavoriteIds] = React.useState({
+  const [favoritedIds] = React.useState({
     episodeIds: favoritedItems.favoriteEpisodes,
     characterIds: favoritedItems.favoriteCharacters
   });
+
   const Episodes = useLazyQuery(GetEpisodesByIds, {
     variables: {
       ids: favoritedIds.episodeIds
     }
   });
+
   const Characters = useLazyQuery(GetCharactersByIds, {
     variables: {
       ids: favoritedIds.characterIds
@@ -62,6 +63,8 @@ export default function Favorites() {
       });
     });
   }, [episodes, favoritedItems]);
+
+  if (Episodes[1].loading || Characters[1].loading) return <LoadingSpinner />;
 
   return (
     <div className="favorites-main-frame">

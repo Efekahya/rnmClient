@@ -4,7 +4,6 @@ import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
 
 const CalculateLocation = () => {
   const location = useLocation().pathname.split("/").slice(1);
-  const href = window.location.href.split("/").slice(3);
   const hrefUpper: string[] = [];
 
   for (let i = 0; i < location.length; i++) {

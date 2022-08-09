@@ -18,6 +18,8 @@ import CharacterEpisodes from "./pages/CharacterEpisodes";
 import { FavoriteProvider } from "./context/favoriteContext";
 import Favorites from "./pages/Favorites";
 import LoadingSpinner from "./components/LoadingSpinner";
+import FavoriteEpisodes from "./pages/FavoriteEpisodes";
+import FavoriteCharacters from "./pages/FavoriteCharacters";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
@@ -46,6 +48,14 @@ function App() {
                 element={<CharacterEpisodes />}
               />
               <Route path="/favorites" element={<Favorites />} />
+              <Route
+                path="/favorites/characters"
+                element={<FavoriteCharacters />}
+              />
+              <Route
+                path="/favorites/episodes"
+                element={<FavoriteEpisodes />}
+              />
               <Route path="/loading" element={<LoadingSpinner />} />
             </Routes>
           </BrowserRouter>
