@@ -210,11 +210,15 @@
 
     .character-episode-items {
         flex-wrap: wrap;
+        max-height: 132px;
         overflow: hidden;
+        width: calc(100% - 64px);
+        padding: 32px;
+        margin: -32px;
     }
 
     .character-episode-item {
-        width: calc(50% - 16px);
+        width: calc(50% - 12px);
     }
 
     .character-name {
@@ -234,12 +238,31 @@
         padding: 0px;
     }
 
+    .character-episode-frame {
+        margin-bottom: 0px;
+    }
 
+    .character-episode-container {
+        width: 100%;
+    }
+
+    .character-episode-showmore {
+        left: calc(100% - 52px);
+        top: -16px;
+    }
 }
 
 @media (max-width: $breakpoint-sm) {
-    .character-episode-item {
+
+    .character-episode-items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
+    }
+
+    .character-episode-item {
+        width: calc(100% - 32px);
     }
 
     .character-episode-showmore-psuedo {
