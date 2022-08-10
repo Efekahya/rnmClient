@@ -74,7 +74,7 @@ export default function Favorites() {
         );
       });
     });
-  }, [episodes, favoritedItems]);
+  }, [characters, episodes, favoritedItems]);
 
   if (Episodes[1].loading || Characters[1].loading) return <LoadingSpinner />;
 
