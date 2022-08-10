@@ -31,7 +31,7 @@
   font-size: 16px;
   background: white url(../../assets/search.svg) no-repeat 24px center;
 
-  @include interText(700, 16px, 19px, #CECECE);
+  @include interText(700, 16px, 19px, $darkgray);
 
   &:hover {
     outline: 1px solid $darkgray;
@@ -47,10 +47,12 @@
   height: 56px;
   border-radius: 5px;
   border: none;
-  padding: 10px;
-  padding-left: 50px;
+  padding: 16px;
+  padding-left: 54px;
   font-size: 16px;
-  background: $gray url(../../assets/search.svg) no-repeat 13px center;
+  background: $gray url(../../assets/search.svg) no-repeat 16px center;
+
+  @include interText(700, 16px, 19px, $darkgray);
 
   &:hover {
     outline: 1px solid $darkgray;
