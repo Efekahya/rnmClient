@@ -19,6 +19,9 @@ export default function Favorites() {
   const [filteredEpisodes, setFilteredEpisodes] = React.useState<IEpisode[]>(
     []
   );
+  const [filteredCharacters, setFilteredCharacters] = React.useState<
+    ICharacter[]
+  >([]);
 
   const [favoritedIds] = React.useState({
     episodeIds: favoritedItems.favoriteEpisodes,
@@ -63,6 +66,15 @@ export default function Favorites() {
       });
     });
   }, [episodes, favoritedItems]);
+  useEffect(() => {
+    setFilteredCharacters(() => {
+      return characters.filter(charater => {
+        return favoritedItems.favoriteCharacters.includes(
+          parseInt(charater.id.toString())
+        );
+      });
+    });
+  }, [episodes, favoritedItems]);
 
   if (Episodes[1].loading || Characters[1].loading) return <LoadingSpinner />;
 
@@ -71,14 +83,14 @@ export default function Favorites() {
       <div className="favorites-main-container">
         <div className="favorites-main-text">Favorites</div>
         <ShowCount
-          count={characters.length || 0}
+          count={filteredCharacters.length || 0}
           href="/favorites/characters"
           title="Characters"
         />
-        {characters.length > 0 ? (
+        {filteredCharacters.length > 0 ? (
           <>
             <div className="favorites-characters">
-              <CharacterList characters={characters} count={4} />
+              <CharacterList characters={filteredCharacters} count={4} />
             </div>
           </>
         ) : (
