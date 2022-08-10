@@ -20,7 +20,7 @@ export default function Episode() {
   useEffect(() => {
     getEpisodes({ variables: { page: 1 } });
     setIsLoading(true);
-  }, []);
+  }, [getEpisodes]);
 
   useEffect(() => {
     if (loading === false && data) {

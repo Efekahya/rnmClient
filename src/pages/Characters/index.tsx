@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GetCharacters } from "../../queries/queries";
 import ShowCount from "../../components/ShowCount";
