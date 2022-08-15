@@ -20,8 +20,6 @@
     padding: 48px 0px 48px 0px;
 }
 
-
-
 @media (max-width: $breakpoint-md) {
     .favorite-episodes-main-text {
         @include interText (700, 21px, auto, $black);

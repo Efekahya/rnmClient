@@ -1,13 +1,12 @@
 import React, { useContext, useEffect } from "react";
-
 import { useLazyQuery } from "@apollo/client";
 
+import { FavoriteContext } from "../../context/favoriteContext";
+
 import CharacterList from "../../components/CharacterList";
-import EpisodeList from "../../components/EpisodeList";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ShowCount from "../../components/ShowCount";
 
-import { FavoriteContext } from "../../context/favoriteContext";
 import { GetCharactersByIds } from "../../queries/queries";
 import { ICharacter } from "../../types/interfaces";
 

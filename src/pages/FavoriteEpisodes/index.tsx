@@ -1,9 +1,12 @@
 import React, { useContext, useEffect } from "react";
-
 import { useLazyQuery } from "@apollo/client";
+
 import { FavoriteContext } from "../../context/favoriteContext";
+
 import { GetEpisodesByIds } from "../../queries/queries";
+
 import { IEpisode } from "../../types/interfaces";
+
 import EpisodeList from "../../components/EpisodeList";
 import ShowCount from "../../components/ShowCount";
 
