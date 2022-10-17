@@ -63,6 +63,15 @@
     max-width: 1120px;
 }
 
+
+.episodes-page-loading-fixed {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    margin-top: -136px;
+    z-index: 9999999;
+}
+
 @media (max-width: $breakpoint-md) {
     .episodes-page-item {
         width: calc(50% - 12px);

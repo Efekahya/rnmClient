@@ -38,6 +38,10 @@
     flex-wrap: wrap;
     flex: 1 0 auto;
     gap: 24px;
+
+    .episodeCard--psuedo {
+        position: relative;
+    }
 }
 
 @media (max-width: $breakpoint-md) {

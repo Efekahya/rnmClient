@@ -15,15 +15,18 @@ export default function Episode() {
   const [episodeArray, setEpisodeArray] = React.useState<JSX.Element[]>([]);
   const [getEpisodes, { loading, error, data }] = useLazyQuery(GetEpisodes);
   const favoritedItems = useContext(FavoriteContext);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   useEffect(() => {
     getEpisodes({ variables: { page: 1 } });
-  }, []);
+    setIsLoading(true);
+  }, [getEpisodes]);
 
   useEffect(() => {
     if (loading === false && data) {
       setEpisodes(episodes => [...episodes, ...data.episodes.results]);
-      setInfo(info => info + data.episodes.info.count);
+      setInfo(data.episodes.info.count);
+      setIsLoading(false);
     }
   }, [data, loading]);
 
@@ -73,10 +76,10 @@ export default function Episode() {
       );
       return prevState;
     });
+    setIsLoading(false);
   }, [episodes, favoritedItems]);
 
   if (error) return <p>error</p>;
-  if (loading) return <LoadingSpinner />;
 
   if (loading === false && data && data.episodes.info) {
     window.onscroll = e => {
@@ -89,12 +92,18 @@ export default function Episode() {
           getEpisodes({
             variables: { page: data.episodes.info.next }
           });
+          setIsLoading(true);
         }
       }
     };
   }
   return (
     <div>
+      {isLoading && (
+        <div className="episodes-page-loading-fixed">
+          <LoadingSpinner />
+        </div>
+      )}
       <div className="episodes-page-showcount-container">
         <div className="episodes-page-showcount">
           <ShowCount count={info} title="Episodes" href="#" />

@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { GetEpisodesByIds, GetCharactersByIds } from "../../queries/queries";
 
 import { ICharacter, IEpisode } from "../../types/interfaces";
 
-import EpisodeCard from "../../components/EpisodeCard";
 import ShowCount from "../../components/ShowCount";
 import CharacterList from "../../components/CharacterList";
 
@@ -20,16 +19,21 @@ export default function Favorites() {
   const [filteredEpisodes, setFilteredEpisodes] = React.useState<IEpisode[]>(
     []
   );
+  const [filteredCharacters, setFilteredCharacters] = React.useState<
+    ICharacter[]
+  >([]);
 
-  const [favoritedIds, setFavoriteIds] = React.useState({
+  const [favoritedIds] = React.useState({
     episodeIds: favoritedItems.favoriteEpisodes,
     characterIds: favoritedItems.favoriteCharacters
   });
+
   const Episodes = useLazyQuery(GetEpisodesByIds, {
     variables: {
       ids: favoritedIds.episodeIds
     }
   });
+
   const Characters = useLazyQuery(GetCharactersByIds, {
     variables: {
       ids: favoritedIds.characterIds
@@ -62,20 +66,31 @@ export default function Favorites() {
       });
     });
   }, [episodes, favoritedItems]);
+  useEffect(() => {
+    setFilteredCharacters(() => {
+      return characters.filter(charater => {
+        return favoritedItems.favoriteCharacters.includes(
+          parseInt(charater.id.toString())
+        );
+      });
+    });
+  }, [characters, episodes, favoritedItems]);
+
+  if (Episodes[1].loading || Characters[1].loading) return <LoadingSpinner />;
 
   return (
     <div className="favorites-main-frame">
       <div className="favorites-main-container">
         <div className="favorites-main-text">Favorites</div>
         <ShowCount
-          count={characters.length || 0}
+          count={filteredCharacters.length || 0}
           href="/favorites/characters"
           title="Characters"
         />
-        {characters.length > 0 ? (
+        {filteredCharacters.length > 0 ? (
           <>
             <div className="favorites-characters">
-              <CharacterList characters={characters} count={4} />
+              <CharacterList characters={filteredCharacters} count={4} />
             </div>
           </>
         ) : (

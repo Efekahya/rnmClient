@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ICharacterListProps } from "../../types/interfaces";
+import { ReactComponent as Star } from "../../assets/star.svg";
+import { FavoriteContext } from "../../context/favoriteContext";
 
 export default function CharacterList({
   characters,
@@ -12,14 +14,42 @@ export default function CharacterList({
   } else {
     sliced = characters;
   }
-
+  const favoritedItems = useContext(FavoriteContext);
   return (
     <div className="characterList--container">
       <div className="characterList--characterList">
         {sliced?.map(({ image, name, id, origin, species }) => (
           <div className="characterList--character" key={id}>
-            <Link to={"/characters/" + id} className="characterList__link">
-              <div className="characterList--imageContainer">
+            <div className="characterList--imageContainer">
+              <button
+                className="characterList--button"
+                onClick={() => {
+                  if (
+                    favoritedItems.favoriteCharacters.includes(
+                      parseInt(id.toString())
+                    )
+                  ) {
+                    favoritedItems.removeFavoriteCharacter(
+                      parseInt(id.toString())
+                    );
+                  } else {
+                    favoritedItems.addFavoriteCharacter(
+                      parseInt(id.toString())
+                    );
+                  }
+                }}
+              >
+                <Star
+                  className={
+                    favoritedItems.favoriteCharacters.includes(
+                      parseInt(id.toString())
+                    )
+                      ? "characterList--star-favorited"
+                      : ""
+                  }
+                />
+              </button>
+              <Link to={"/characters/" + id} className="characterList__link">
                 <div className="characterList--infoLeft">{origin.name}</div>
                 <div className="characterList--infoRight">{species}</div>
                 <img
@@ -28,8 +58,8 @@ export default function CharacterList({
                   src={image}
                   alt={name}
                 />
-              </div>
-            </Link>
+              </Link>
+            </div>
             <span>{name}</span>
           </div>
         ))}

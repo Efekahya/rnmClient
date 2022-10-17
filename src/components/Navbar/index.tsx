@@ -10,6 +10,7 @@ import { NavbarSearch } from "../../queries/queries";
 import CharacterList from "../CharacterList";
 import EpisodeCard from "../EpisodeCard";
 import ShowCount from "../ShowCount";
+
 import { FavoriteContext } from "../../context/favoriteContext";
 
 export default function Navbar({ Logo }: INavbarProps) {
@@ -133,7 +134,7 @@ export default function Navbar({ Logo }: INavbarProps) {
         return episodeArray;
       });
     }
-  }, [episodes, isCharacter]);
+  }, [episodes, isCharacter, favoritedItems]);
 
   if (error) return <p>Error :(</p>;
 

@@ -23,6 +23,7 @@
   align-items: flex-start;
   gap: 16px;
   margin: 0;
+  position: relative;
 }
 
 .characterList--image {
@@ -50,7 +51,8 @@
   &:hover {
 
     .characterList--infoLeft,
-    .characterList--infoRight {
+    .characterList--infoRight,
+    .characterList--button {
       opacity: 1;
 
     }
@@ -62,7 +64,8 @@
   &:active {
 
     .characterList--infoLeft,
-    .characterList--infoRight {
+    .characterList--infoRight,
+    .characterList--button {
       opacity: 0;
     }
 
@@ -101,6 +104,44 @@
   text-overflow: ellipsis;
   max-width: 50%;
   white-space: nowrap;
+}
+
+.characterList--button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 6px;
+  right: 0px;
+  bottom: 0px;
+  opacity: 0;
+  background-color: $gray;
+  border-radius: 8px;
+  border: none;
+  transition: opacity 0.2s ease-in-out;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $outline;
+
+    svg {
+      stroke: $black;
+    }
+
+    .characterList--star-favorited {
+      fill: $black  !important;
+    }
+  }
+
+  svg {
+    stroke: $darkgray;
+  }
+}
+
+.characterList--star-favorited {
+  fill: $darkgray  !important;
 }
 
 .characterList--psuedo {

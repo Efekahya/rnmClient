@@ -1,0 +1,27 @@
+.favorite-episodes-main-frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.favorite-episodes-main-container {
+    max-width: 1120px;
+    width: calc(100% - 16px);
+    display: flex;
+    flex-direction: column;
+    margin: 16px
+}
+
+.favorite-episodes-main-text {
+    @include interText(700, 32px, 39px, $black);
+    padding: 48px 0px 48px 0px;
+}
+
+@media (max-width: $breakpoint-md) {
+    .favorite-episodes-main-text {
+        @include interText (700, 21px, auto, $black);
+    }
+}

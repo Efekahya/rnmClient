@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { IFavoriteContext } from "../types/contextInterface";
-import { IEpisode } from "../types/interfaces";
 
 export const FavoriteContext = React.createContext<IFavoriteContext>({
   favoriteEpisodes: [],

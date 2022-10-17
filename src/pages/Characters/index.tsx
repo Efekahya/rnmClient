@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GetCharacters } from "../../queries/queries";
 import ShowCount from "../../components/ShowCount";
@@ -8,6 +8,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Characters() {
   const [characters, setCharacters] = React.useState<ICharacter[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [info, setInfo] = React.useState<IInfo>();
   const { data, loading, error, refetch } = useQuery(GetCharacters, {
     variables: { page: 1 }
@@ -46,10 +47,10 @@ export default function Characters() {
         return prevState;
       });
       setInfo(data.characters.info);
+      setIsLoading(false);
     }
   }, [loading, data]);
 
-  if (loading) return <LoadingSpinner />;
   if (error) return <p>Error :(</p>;
 
   if (loading === false && data && info) {
@@ -63,6 +64,7 @@ export default function Characters() {
           refetch({
             page: parseInt(info.next)
           });
+          setIsLoading(true);
         }
       }
     };
@@ -70,13 +72,14 @@ export default function Characters() {
 
   return (
     <>
+      {isLoading === true && (
+        <div className="characters-page-loading-fixed">
+          <LoadingSpinner />
+        </div>
+      )}
       <div className="characters-page-frame">
         <div className="characters-page-container">
-          <ShowCount
-            count={data.characters.info.count}
-            title="Characters"
-            href="#"
-          />
+          <ShowCount count={info?.count || 0} title="Characters" href="#" />
           <CharacterList characters={characters} count={-1} />
         </div>
       </div>
